@@ -2,7 +2,7 @@
 /**
  * schedules_weekly_automation.php
  * Work schedules weekly automation
- * Версия: 1.3
+ * Версия: 1.4
  *
  * Доработки v1.2 (исключение ложных срабатываний):
  *  - Строго ограничили целевых пользователей:
@@ -581,6 +581,47 @@ function sendMail(string $realTo, string $subject, string $body, bool $dryRun, ?
 	]);
 }
 
+/** ---------- PORTAL NOTIFY (колокольчик) ---------- */
+function sendPortalNotification(int $userId, string $subject, string $body, bool $dryRun, ?string $link = null): bool
+{
+	$message = trim($subject) . "\n\n" . trim($body);
+
+	if ($link) {
+		$message .= "\n\n" . "Ссылка на график: " . $link;
+	}
+
+	logLine("PORTAL_NOTIFY to_user_id={$userId}; subject={$subject}; dry_run=" . ($dryRun ? 'Y' : 'N'));
+
+	if ($dryRun) {
+		return true;
+	}
+
+	if (!Loader::includeModule('im')) {
+		logLine("PORTAL_NOTIFY ERROR: module 'im' is not available");
+		return false;
+	}
+
+	$notifyTypeSystem = defined('IM_NOTIFY_SYSTEM') ? IM_NOTIFY_SYSTEM : 1;
+
+	$res = \CIMNotify::Add([
+		'TO_USER_ID' => $userId,
+		'FROM_USER_ID' => 0,
+		'NOTIFY_TYPE' => $notifyTypeSystem,
+		'NOTIFY_MODULE' => 'main',
+		'NOTIFY_EVENT' => 'work_schedule_weekly_automation',
+		'NOTIFY_TAG' => 'work_schedule_weekly_automation|' . $userId . '|' . md5($subject . '|' . $body),
+		'NOTIFY_MESSAGE' => $message,
+		'NOTIFY_MESSAGE_OUT' => $message,
+	]);
+
+	if (!$res) {
+		logLine("PORTAL_NOTIFY ERROR: failed for user_id={$userId}");
+		return false;
+	}
+
+	return true;
+}
+
 /** ---------- MAIN ---------- */
 try {
 	global $DRY_RUN, $TIME_TOLERANCE_MINUTES, $FORCE_NOW, $TEST_ONLY_USER_ID, $TEST_ONLY_USER_IDS, $TEST_MAIL_TO;
@@ -594,7 +635,7 @@ try {
 	$hm = $now->format('H:i');
 	$weekdayN = (int)$now->format('N'); // 1=Mon..7=Sun
 
-	logLine("=== START v1.3; DRY_RUN=" . ($DRY_RUN ? 'Y' : 'N') .
+	logLine("=== START v1.4; DRY_RUN=" . ($DRY_RUN ? 'Y' : 'N') .
 		"; FORCE_NOW=" . ($FORCE_NOW ?: 'NULL') .
 		"; TEST_ONLY_USER_ID=" . ($TEST_ONLY_USER_ID !== null ? $TEST_ONLY_USER_ID : 'NULL') .
 		"; TEST_ONLY_USER_IDS=" . (is_array($TEST_ONLY_USER_IDS) ? implode(',', $TEST_ONLY_USER_IDS) : 'NULL') .
@@ -667,6 +708,7 @@ try {
 		$login = (string)($u['LOGIN'] ?? '');
 		$email = trim((string)$u['EMAIL']);
 		$fio = trim(($u['LAST_NAME'] ?? '') . ' ' . ($u['NAME'] ?? '') . ' ' . ($u['SECOND_NAME'] ?? ''));
+		$scheduleUrl = 'https://ourtricolortv.nsc.ru/schedules/my/';
 
 		// ограничение одним пользователем (тест)
 		if ($TEST_ONLY_USER_ID !== null && $userId !== (int)$TEST_ONLY_USER_ID) {
@@ -695,11 +737,6 @@ try {
 
 		logLine("USER CHECK: ID={$userId}; LOGIN={$login}; EMAIL={$email}; FIO={$fio}; UF_WORK_FORMAT={$rawWork}; UF_PLANNING_PERIOD={$rawPlan}; GROUP46=Y");
 
-		if ($email === '') {
-			logLine("User#{$userId} {$fio}: skip, empty email");
-			continue;
-		}
-
 		$res = getUserNextWeekDiagnostics($userId, $nowDate, $planDataClass);
 		$targetDates = $res['targetDates'];
 
@@ -718,10 +755,17 @@ try {
 				"Коллега, добрый день!\n\n" .
 				"Вам необходимо составить график работы на следующую неделю ({$datesHuman}) и отправить его на согласование руководителю до конца дня {$deadlineHuman}.\n" .
 				"Если график в указанный срок не будет составлен и направлен на согласование, в него автоматически загрузятся офисные дни.\n\n" .
-				"Ссылка на график: https://ourtricolortv.nsc.ru/schedules/my/\n";
+				"Ссылка на график: {$scheduleUrl}\n";
 
-			$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
-			$notified += $ok ? 1 : 0;
+			if ($email !== '') {
+				$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
+				$notified += $ok ? 1 : 0;
+			} else {
+				logLine("User#{$userId} {$fio}: email empty, skip mail");
+			}
+
+			$okPortal = sendPortalNotification($userId, $subject, $body, $DRY_RUN, $scheduleUrl);
+			$notified += $okPortal ? 1 : 0;
 		}
 		elseif ($runMode === 'MAIL_THU_10') {
 			$subject = 'Планирование графика на следующую неделю';
@@ -729,10 +773,17 @@ try {
 				"Коллега, добрый день!\n\n" .
 				"Напоминаем, Вам необходимо составить график работы на следующую неделю ({$datesHuman}) и отправить его на согласование руководителю до конца дня {$deadlineHuman}.\n" .
 				"Если график в указанный срок не будет составлен и направлен на согласование, в него автоматически загрузятся офисные дни.\n\n" .
-				"Ссылка на график: https://ourtricolortv.nsc.ru/schedules/my/\n";
+				"Ссылка на график: {$scheduleUrl}\n";
 
-			$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
-			$notified += $ok ? 1 : 0;
+			if ($email !== '') {
+				$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
+				$notified += $ok ? 1 : 0;
+			} else {
+				logLine("User#{$userId} {$fio}: email empty, skip mail");
+			}
+
+			$okPortal = sendPortalNotification($userId, $subject, $body, $DRY_RUN, $scheduleUrl);
+			$notified += $okPortal ? 1 : 0;
 		}
 		elseif ($runMode === 'AUTO_THU_19') {
 			$upd = updateUserPlanToOfficeAuto($userId, $planDataClass, $targetDates, $DRY_RUN);
@@ -751,10 +802,17 @@ try {
 					"Коллега, добрый день!\n\n" .
 					"Вами не был составлен график работы на следующую неделю ({$datesHuman}), поэтому на этот период проставлены офисные дни. " .
 					"Вы можете скорректировать график и отправить его на согласование руководителю. Обращаем внимание, что прошедшие периоды не подлежат корректировке.\n\n" .
-					"Ссылка на график: https://ourtricolortv.nsc.ru/schedules/my/\n";
+					"Ссылка на график: {$scheduleUrl}\n";
 
-				$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
-				$notified += $ok ? 1 : 0;
+				if ($email !== '') {
+					$ok = sendMail($email, $subject, $body, $DRY_RUN, $TEST_MAIL_TO);
+					$notified += $ok ? 1 : 0;
+				} else {
+					logLine("User#{$userId} {$fio}: email empty, skip mail");
+				}
+
+				$okPortal = sendPortalNotification($userId, $subject, $body, $DRY_RUN, $scheduleUrl);
+				$notified += $okPortal ? 1 : 0;
 			}
 		}
 	}
