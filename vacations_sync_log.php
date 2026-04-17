@@ -2,7 +2,7 @@
 /**
  * Vacations <-> GateDB_Test sync
  * Only ACTIVE users; 6-month window; only statuses [4,5,6,7,8]; diffed; batch MERGE; resume cursor
- * Version: v1.6.4-fix (2025-11-12)
+ * Version: v1.7.0-derived-sync (2026-04-17)
  *
  * Исправления:
  *  - HL → SQL: UF_VACATION_STATE → Absence_State
@@ -34,6 +34,7 @@ const GATE_TABLE       = 'StaffAbsences_1CZUP';
 const TIME_BUDGET_SEC          = 55;
 const MAX_SQL_UPDATES_PER_RUN  = 6000;
 const GATE_BATCH_SIZE          = 3000;
+const DERIVED_BACKFILL_BATCH   = 500;
 const HL_EMP_CHUNK_SIZE        = 1000;
 const HL_SQL_MERGE_CHUNK       = 500;
 const MONTH_WINDOW             = 6;
@@ -173,7 +174,7 @@ try {
         $cutoffBxDate = new Date($cutoffYmd, 'Y-m-d');
     }
 }
-logx("=== Test sync v1.6.2-fixed start ===");
+logx("=== Test sync v1.7.0-derived-sync start ===");
 logx("Cutoff date (>=): ".($cutoffYmd ?: '<none>'));
 logx("Allowed UF_STATE: ".implode(',', ALLOWED_STATES));
 // Users & GUIDs
@@ -196,7 +197,7 @@ while ($u = $rsAllUsers->Fetch()) {
 logx("Active users with GUID: users=".count($activeUserIds).", guids=".count($activeGuidList));
 if (!$activeUserIds || !$activeGuidList) {
     logx("Нет активных пользователей — прекращаем.");
-    echo "OK v1.6.4-fix; no active users\n";
+    echo "OK v1.7.0-derived-sync; no active users\n";
     return;
 }
 // ---------- HL -> SQL ----------
@@ -554,8 +555,92 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
         }
     }
 } while (true);
+// ---------- SQL -> HL (derived backfill, вне курсора) ----------
+if ($sql2hlCount < MAX_SQL_UPDATES_PER_RUN) {
+    $cutoffSqlClause = '';
+    if ($cutoffYmd && preg_match('/^\d{4}-\d{2}-\d{2}$/', $cutoffYmd)) {
+        $cutoffSqlClause = "AND Absence_Date_Start >= N'".$sqlHelper->forSql($cutoffYmd)."'";
+    }
+    $qDerivedBackfill = "
+SELECT TOP ".DERIVED_BACKFILL_BATCH."
+  Absence_ID,AbsenceBases_ID,Staff_ID,Absence_Status,Absence_Renew_Date,Absence_State,Absence_Date_Start,Absence_Day_Count
+FROM ".GATE_DB_DBO.".".GATE_TABLE."
+WHERE PATINDEX('%[^0-9]%', Absence_ID) > 0
+  AND Absence_Status IN (".implode(',', ALLOWED_STATES).")
+  $cutoffSqlClause
+ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
+    $rsDerivedBackfill = $gateConn->query($qDerivedBackfill);
+    $derivedRows = [];
+    while ($r = $rsDerivedBackfill->fetch()) { $derivedRows[] = $r; }
+    if ($derivedRows) {
+        $prefixes = array_values(array_unique(array_map(fn($x) => (string)$x['Absence_ID'], $derivedRows)));
+        $existingPrefixes = [];
+        $resExisting = $dataClass::getList([
+            'select' => ['ID','UF_ID_PREFIX'],
+            'filter' => ['@UF_ID_PREFIX' => $prefixes],
+        ]);
+        while ($x = $resExisting->fetch()) {
+            $existingPrefixes[(string)$x['UF_ID_PREFIX']] = (int)$x['ID'];
+        }
+        foreach ($derivedRows as $row) {
+            if ($sql2hlCount >= MAX_SQL_UPDATES_PER_RUN) {
+                logx("SQL->HL reached per-run cap in derived backfill: ".MAX_SQL_UPDATES_PER_RUN);
+                break;
+            }
+            if (microtime(true) - $startedAt > TIME_BUDGET_SEC) {
+                logx("Time budget reached during SQL->HL derived backfill");
+                break;
+            }
+            $prefixId = (string)$row['Absence_ID'];
+            if (isset($existingPrefixes[$prefixId])) continue;
+            $staffGuid = normalizeGuid((string)($row['Staff_ID'] ?? ''));
+            $empId = (int)($allGuidToUserId[$staffGuid] ?? 0);
+            if ($empId <= 0) {
+                logx("SQL->HL ДОП BACKFILL skip prefix={$prefixId}: employee not found for Staff_ID=".((string)($row['Staff_ID'] ?? '')));
+                continue;
+            }
+            $dateBegin = toBxDate((string)($row['Absence_Date_Start'] ?? ''));
+            $vacDays = (int)($row['Absence_Day_Count'] ?? 0);
+            $basisId = trim((string)($row['AbsenceBases_ID'] ?? ''));
+            if (!$dateBegin || $vacDays <= 0 || $basisId === '') {
+                logx("SQL->HL ДОП BACKFILL skip prefix={$prefixId}: invalid payload");
+                continue;
+            }
+            $now = new DateTime();
+            $commentTime = $now->format('d.m.Y H:i:s');
+            $fields = [
+                'UF_ID_PREFIX'         => $prefixId,
+                'UF_ABSENCEBASES_ID'   => $basisId,
+                'UF_EMPLOYEE'          => $empId,
+                'UF_DATE_BEGIN'        => $dateBegin,
+                'UF_VACATION_DAYS'     => $vacDays,
+                'UF_DATE_END'          => calcBxDateEnd($dateBegin, $vacDays),
+                'UF_TYPE'              => DERIVED_VACATION_TYPE_ID,
+                'UF_STATE'             => (int)$row['Absence_Status'],
+                'UF_ABSENCE_RENEW_DATE'=> $now,
+                'UF_VACATION_STATE'    => (int)$row['Absence_State'],
+                'UF_VACATION_COMMENT'  => "Создан {$commentTime} из ЗУП на основании отпуска {$basisId}",
+            ];
+            try {
+                $add = $dataClass::add($fields);
+                if (!$add->isSuccess()) {
+                    logx("WARN SQL->HL ДОП BACKFILL add prefix={$prefixId}: ".implode('; ', $add->getErrorMessages()));
+                    continue;
+                }
+                $hlId = (int)$add->getId();
+                $existingPrefixes[$prefixId] = $hlId;
+                logx(sprintf("SQL->HL ДОП BACKFILL СОЗДАНИЕ prefix=%s hl_id=%s basis=%s статус=%s состояние=%s",
+                    $prefixId, (string)$hlId, $basisId, (string)$fields['UF_STATE'], (string)$fields['UF_VACATION_STATE']
+                ));
+                $sql2hlCount++;
+            } catch (\Throwable $e) {
+                logx("ERROR SQL->HL ДОП BACKFILL prefix={$prefixId}: ".$e->getMessage());
+            }
+        }
+    }
+}
 // save cursor & finish
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
 logx("=== Test sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, elapsed={$elapsed}s ===");
-echo "OK v1.6.4-fix; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; elapsed={$elapsed}s";
+echo "OK v1.7.0-derived-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; elapsed={$elapsed}s";
