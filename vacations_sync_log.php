@@ -72,6 +72,12 @@ function compileHLDataClass(int $hlId): string {
     $entity = HL\HighloadBlockTable::compileEntity($hl);
     return $entity->getDataClass();
 }
+/** Normalize GUID string to canonical form used in SQL comparisons */
+function normalizeGuid(string $guid): string {
+    $g = strtolower(trim($guid));
+    $g = trim($g, "{}");
+    return $g;
+}
 /** ACTIVE=Y + UF_1C_GUID not empty */
 function getActiveUsersWithGuid(): array {
     $ids  = [];
@@ -79,7 +85,7 @@ function getActiveUsersWithGuid(): array {
     $rs = \CUser::GetList($by='id', $order='asc', ['ACTIVE'=>'Y'], ['FIELDS'=>['ID'], 'SELECT'=>['UF_1C_GUID']]);
     while ($u = $rs->Fetch()) {
         $uid = (int)$u['ID'];
-        $g = trim((string)($u['UF_1C_GUID'] ?? ''));
+        $g = normalizeGuid((string)($u['UF_1C_GUID'] ?? ''));
         if ($uid > 0 && $g !== '' && $g !== '0') {
             $ids[] = $uid;
             $guid[$uid] = $g;
@@ -174,7 +180,18 @@ logx("Allowed UF_STATE: ".implode(',', ALLOWED_STATES));
 [$activeUserIds, $userGuidMap, $activeGuidList] = getActiveUsersWithGuid();
 $guidToUserId = [];
 foreach ($userGuidMap as $uid => $guid) {
-    $guidToUserId[strtolower((string)$guid)] = (int)$uid;
+    $guidToUserId[normalizeGuid((string)$guid)] = (int)$uid;
+}
+// Карта GUID -> USER_ID для всех пользователей (в т.ч. неактивных),
+// чтобы доп. записи из 1С не терялись на SQL-уровне фильтра только по ACTIVE=Y.
+$allGuidToUserId = [];
+$rsAllUsers = \CUser::GetList($by='id', $order='asc', [], ['FIELDS'=>['ID'], 'SELECT'=>['UF_1C_GUID']]);
+while ($u = $rsAllUsers->Fetch()) {
+    $uid = (int)$u['ID'];
+    $guid = normalizeGuid((string)($u['UF_1C_GUID'] ?? ''));
+    if ($uid > 0 && $guid !== '' && $guid !== '0' && !isset($allGuidToUserId[$guid])) {
+        $allGuidToUserId[$guid] = $uid;
+    }
 }
 logx("Active users with GUID: users=".count($activeUserIds).", guids=".count($activeGuidList));
 if (!$activeUserIds || !$activeGuidList) {
@@ -313,7 +330,7 @@ do {
 SELECT TOP ".GATE_BATCH_SIZE."
   Absence_ID,AbsenceBases_ID,DocumentVacation_ID,Staff_ID,Absence_Name,Absence_Status,Absence_Renew_Date,Absence_State,Absence_Date_Start,Absence_Day_Count
 FROM ".GATE_DB_DBO.".".GATE_TABLE."
-WHERE Staff_ID IN ($guidInList)
+WHERE (Staff_ID IN ($guidInList) OR PATINDEX('%[^0-9]%', Absence_ID) > 0)
   AND Absence_Status IN (".implode(',', ALLOWED_STATES).")
   $cutoffSqlClause
   AND (
@@ -371,9 +388,9 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
         $cursorId    = (string)$row['Absence_ID'];
         if (!isBaseAbsenceId((string)$row['Absence_ID'])) {
             $prefixId = (string)$row['Absence_ID'];
-            $staffGuid = strtolower(trim((string)($row['Staff_ID'] ?? '')));
-            $empId = (int)($guidToUserId[$staffGuid] ?? 0);
-            if ($empId <= 0 || !in_array($empId, $activeUserIds, true)) {
+            $staffGuid = normalizeGuid((string)($row['Staff_ID'] ?? ''));
+            $empId = (int)($allGuidToUserId[$staffGuid] ?? 0);
+            if ($empId <= 0) {
                 logx("SQL->HL ДОП skip prefix={$prefixId}: employee not found for Staff_ID=".((string)($row['Staff_ID'] ?? '')));
                 continue;
             }
