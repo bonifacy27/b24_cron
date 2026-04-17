@@ -321,10 +321,14 @@ WHERE Staff_ID IN ($guidInList)
     OR (Absence_Renew_Date = '".$sqlHelper->forSql($cursorRenew)."' AND Absence_ID > N'".$sqlHelper->forSql($cursorId)."')
   )
 ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
+    logx("SQL->HL fetch window: cursor={$cursorRenew}, id='{$cursorId}'");
     $rs = $gateConn->query($q);
     $rows = [];
     while ($r = $rs->fetch()) { $rows[] = $r; }
     if (!$rows) { logx("SQL->HL: no more rows after cursor"); break; }
+    $firstRow = $rows[0];
+    $lastRow = $rows[count($rows)-1];
+    logx("SQL->HL fetched rows=".count($rows).", first=".((string)$firstRow['Absence_ID'])."/".((string)$firstRow['Absence_Renew_Date']).", last=".((string)$lastRow['Absence_ID'])."/".((string)$lastRow['Absence_Renew_Date']));
     // Предзагрузка существующих HL-элементов
     $hlIds = [];
     foreach ($rows as $row) {
