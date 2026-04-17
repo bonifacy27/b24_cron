@@ -2,7 +2,7 @@
 /**
  * Vacations <-> GateDB_Test sync
  * Only ACTIVE users; 6-month window; only statuses [4,5,6,7,8]; diffed; batch MERGE; resume cursor
- * Version: v1.6.4-fix (2025-11-12)
+ * Version: v1.7.0-derived-sync (2026-04-17)
  *
  * Исправления:
  *  - HL → SQL: UF_VACATION_STATE → Absence_State
@@ -174,7 +174,7 @@ try {
         $cutoffBxDate = new Date($cutoffYmd, 'Y-m-d');
     }
 }
-logx("=== Test sync v1.6.2-fixed start ===");
+logx("=== Test sync v1.7.0-derived-sync start ===");
 logx("Cutoff date (>=): ".($cutoffYmd ?: '<none>'));
 logx("Allowed UF_STATE: ".implode(',', ALLOWED_STATES));
 // Users & GUIDs
@@ -197,7 +197,7 @@ while ($u = $rsAllUsers->Fetch()) {
 logx("Active users with GUID: users=".count($activeUserIds).", guids=".count($activeGuidList));
 if (!$activeUserIds || !$activeGuidList) {
     logx("Нет активных пользователей — прекращаем.");
-    echo "OK v1.6.4-fix; no active users\n";
+    echo "OK v1.7.0-derived-sync; no active users\n";
     return;
 }
 // ---------- HL -> SQL ----------
@@ -643,4 +643,4 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
 logx("=== Test sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, elapsed={$elapsed}s ===");
-echo "OK v1.6.4-fix; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; elapsed={$elapsed}s";
+echo "OK v1.7.0-derived-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; elapsed={$elapsed}s";
