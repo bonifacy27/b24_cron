@@ -38,6 +38,7 @@ const HL_EMP_CHUNK_SIZE        = 1000;
 const HL_SQL_MERGE_CHUNK       = 500;
 const MONTH_WINDOW             = 6;
 const ALLOWED_STATES           = [4,5,6,7,8];
+const BASE_ABSENCE_ID_REGEX    = '/^\d+$/';
 $startedAt = microtime(true);
 // ---------- logging ----------
 function logx(string $msg): void {
@@ -114,6 +115,10 @@ function loadSqlHlCursor(): array {
 function saveSqlHlCursor(string $renew, string $id): void {
     Option::set(MODULE_ID, OPT_SQLHL_CUR_R, $renew);
     Option::set(MODULE_ID, OPT_SQLHL_CUR_I, $id);
+}
+/** Primary (portal) absence ID only, e.g. "12345". Derived IDs like "12345_a" are not primary. */
+function isBaseAbsenceId(string $absenceId): bool {
+    return (bool)preg_match(BASE_ABSENCE_ID_REGEX, $absenceId);
 }
 // ---------- setup ----------
 $dataClass = compileHLDataClass(HLBLOCK_ID);
@@ -292,7 +297,7 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
     // Предзагрузка существующих HL-элементов
     $hlIds = [];
     foreach ($rows as $row) {
-        if (preg_match('/^\d+$/', (string)$row['Absence_ID'])) $hlIds[] = (int)$row['Absence_ID'];
+        if (isBaseAbsenceId((string)$row['Absence_ID'])) $hlIds[] = (int)$row['Absence_ID'];
     }
     $hlMap = [];
     if ($hlIds) {
@@ -309,7 +314,9 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
     foreach ($rows as $row) {
         $cursorRenew = date('Y-m-d H:i:s', strtotime($row['Absence_Renew_Date'] ?: '1900-01-01'));
         $cursorId    = (string)$row['Absence_ID'];
-        if (!preg_match('/^\d+$/', (string)$row['Absence_ID'])) continue;
+        // Не трогаем дополнительные записи из 1С (Absence_ID с префиксом/suffix),
+        // чтобы исключить их удаление/перезапись при стандартном обмене.
+        if (!isBaseAbsenceId((string)$row['Absence_ID'])) continue;
         $id = (int)$row['Absence_ID'];
         if (!isset($hlMap[$id])) continue;
         $empId = (int)$hlMap[$id]['UF_EMPLOYEE'];
