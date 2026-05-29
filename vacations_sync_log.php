@@ -141,11 +141,41 @@ function toBxDate(?string $sqlDate): ?Date {
     if (!$ts) return null;
     return new Date(date('Y-m-d', $ts), 'Y-m-d');
 }
-/** Date end = date begin + vacation days */
+/** Date end = inclusive: date begin + vacation days - 1 day */
 function calcBxDateEnd(Date $begin, int $days): Date {
     $php = new \DateTimeImmutable($begin->format('Y-m-d'));
-    $php = $php->modify(sprintf('+%d day', max(0, $days)));
+    $php = $php->modify(sprintf('+%d day', max(0, $days - 1)));
     return new Date($php->format('Y-m-d'), 'Y-m-d');
+}
+/** Set base vacation status to cancelled when a derived SQL absence references it */
+function cancelBasisVacation(string $dataClass, string $basisId, string $prefixId): bool {
+    $basisId = trim($basisId);
+    if ($basisId === '') {
+        return false;
+    }
+    $filter = isBaseAbsenceId($basisId) ? ['ID' => (int)$basisId] : ['UF_ID_PREFIX' => $basisId];
+    $res = $dataClass::getList([
+        'select' => ['ID','UF_STATE'],
+        'filter' => $filter,
+        'limit'  => 1,
+    ]);
+    $basis = $res->fetch();
+    if (!$basis) {
+        logx("WARN SQL->HL ДОП prefix={$prefixId}: base vacation {$basisId} not found for cancellation");
+        return false;
+    }
+    $hlId = (int)$basis['ID'];
+    if ((int)$basis['UF_STATE'] === 8) {
+        logx("SQL->HL ДОП prefix={$prefixId}: base vacation {$basisId} already cancelled (HL#{$hlId})");
+        return true;
+    }
+    $upd = $dataClass::update($hlId, ['UF_STATE' => 8]);
+    if (!$upd->isSuccess()) {
+        logx("WARN SQL->HL ДОП prefix={$prefixId}: can't cancel base vacation {$basisId} (HL#{$hlId}): ".implode('; ', $upd->getErrorMessages()));
+        return false;
+    }
+    logx("SQL->HL ДОП prefix={$prefixId}: base vacation {$basisId} cancelled (HL#{$hlId})");
+    return true;
 }
 /** Sync SQL Absence_Renew_Date with real HL changed_at to avoid reprocessing */
 function syncSqlRenewDate(\Bitrix\Main\DB\Connection $gateConn, $sqlHelper, string $absenceId, string $hlTime): void {
@@ -431,6 +461,7 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
                     : date('Y-m-d H:i:s', strtotime((string)$existing['UF_CHANGED_AT']));
             }
             if ($existing && $sqlRenew && $hlChanged && $sqlRenew <= $hlChanged) {
+                cancelBasisVacation($dataClass, $basisId, $prefixId);
                 continue;
             }
             try {
@@ -467,6 +498,7 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
                         (string)$fields['UF_VACATION_STATE']
                     ));
                 }
+                cancelBasisVacation($dataClass, $basisId, $prefixId);
                 $res2 = $dataClass::getList([
                     'select' => ['UF_CHANGED_AT'],
                     'filter' => ['ID' => $hlId],
@@ -592,7 +624,13 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
                 break;
             }
             $prefixId = (string)$row['Absence_ID'];
-            if (isset($existingPrefixes[$prefixId])) continue;
+            $basisId = trim((string)($row['AbsenceBases_ID'] ?? ''));
+            if (isset($existingPrefixes[$prefixId])) {
+                if ($basisId !== '') {
+                    cancelBasisVacation($dataClass, $basisId, $prefixId);
+                }
+                continue;
+            }
             $staffGuid = normalizeGuid((string)($row['Staff_ID'] ?? ''));
             $empId = (int)($allGuidToUserId[$staffGuid] ?? 0);
             if ($empId <= 0) {
@@ -601,7 +639,6 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
             }
             $dateBegin = toBxDate((string)($row['Absence_Date_Start'] ?? ''));
             $vacDays = (int)($row['Absence_Day_Count'] ?? 0);
-            $basisId = trim((string)($row['AbsenceBases_ID'] ?? ''));
             if (!$dateBegin || $vacDays <= 0 || $basisId === '') {
                 logx("SQL->HL ДОП BACKFILL skip prefix={$prefixId}: invalid payload");
                 continue;
@@ -632,6 +669,7 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
                 logx(sprintf("SQL->HL ДОП BACKFILL СОЗДАНИЕ prefix=%s hl_id=%s basis=%s статус=%s состояние=%s",
                     $prefixId, (string)$hlId, $basisId, (string)$fields['UF_STATE'], (string)$fields['UF_VACATION_STATE']
                 ));
+                cancelBasisVacation($dataClass, $basisId, $prefixId);
                 $sql2hlCount++;
             } catch (\Throwable $e) {
                 logx("ERROR SQL->HL ДОП BACKFILL prefix={$prefixId}: ".$e->getMessage());
