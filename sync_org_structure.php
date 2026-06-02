@@ -1,7 +1,7 @@
 <?php
 /**
  * sync_org_structure.php
- * Version: 1.6
+ * Version: 1.7
  *
  * Путь:
  * /home/bitrix/www/local/cron/sync_org_structure.php
@@ -25,7 +25,7 @@ use Bitrix\Main\Config\Option;
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Type\DateTime;
 
-const SCRIPT_VERSION = '1.6';
+const SCRIPT_VERSION = '1.7';
 
 const HL_BLOCK_ID = 99;
 
@@ -126,6 +126,11 @@ function makePathHash($path)
     return md5(mb_strtolower(trim($path), 'UTF-8'));
 }
 
+function normalizeGuid($value)
+{
+    return mb_strtolower(trim((string)$value), 'UTF-8');
+}
+
 function requestStaffInfo($guid)
 {
     $url = sprintf(SERVICE_URL_TEMPLATE, rawurlencode($guid));
@@ -206,7 +211,7 @@ function extractCeoChain(array $data)
     return $levels;
 }
 
-function findOrCreateNode($dataClass, $name, $level, $parentId, $fullPath)
+function findOrCreateNode($dataClass, $name, $level, $parentId, $fullPath, $managerGuid = null, $managerUserId = null)
 {
     $pathHash = makePathHash($fullPath);
 
@@ -230,6 +235,11 @@ function findOrCreateNode($dataClass, $name, $level, $parentId, $fullPath)
         $fields['UF_PARENT_ID'] = $parentId;
     } else {
         $fields['UF_PARENT_ID'] = false;
+    }
+
+    if ($managerGuid !== null) {
+        $fields['UF_MANAGER_GUID'] = normalizeGuid($managerGuid);
+        $fields['UF_MANAGER'] = (int)$managerUserId > 0 ? (int)$managerUserId : false;
     }
 
     if ($row) {
@@ -259,23 +269,29 @@ function findOrCreateNode($dataClass, $name, $level, $parentId, $fullPath)
     return (int)$result->getId();
 }
 
-function syncOrgChain($dataClass, array $ceoChain)
+function syncOrgChain($dataClass, array $ceoChain, $managerGuid, $managerUserId)
 {
     $parentId = 0;
     $pathParts = [];
     $lastNodeId = 0;
     $lastLevel = 0;
+    $chainKeys = array_keys($ceoChain);
+    $lastChainKey = end($chainKeys);
 
     foreach ($ceoChain as $level => $name) {
         $pathParts[] = $name;
         $fullPath = implode(' / ', $pathParts);
+
+        $isLastNode = ($level === $lastChainKey);
 
         $nodeId = findOrCreateNode(
             $dataClass,
             $name,
             $level,
             $parentId,
-            $fullPath
+            $fullPath,
+            $isLastNode ? $managerGuid : null,
+            $isLastNode ? $managerUserId : null
         );
 
         $parentId = $nodeId;
@@ -359,6 +375,46 @@ function getUsersForSync($limit, $lastUserId, &$newLastUserId)
     return $users;
 }
 
+function findUserIdBy1cGuid($guid)
+{
+    static $cache = [];
+
+    $guid = normalizeGuid($guid);
+
+    if ($guid === '') {
+        return 0;
+    }
+
+    if (array_key_exists($guid, $cache)) {
+        return $cache[$guid];
+    }
+
+    $rsUsers = CUser::GetList(
+        $by = 'ID',
+        $order = 'ASC',
+        [
+            'UF_1C_GUID' => $guid,
+        ],
+        [
+            'FIELDS' => [
+                'ID',
+            ],
+            'SELECT' => [
+                'UF_1C_GUID',
+            ],
+            'NAV_PARAMS' => [
+                'nTopCount' => 1,
+            ],
+        ]
+    );
+
+    $user = $rsUsers->Fetch();
+
+    $cache[$guid] = $user ? (int)$user['ID'] : 0;
+
+    return $cache[$guid];
+}
+
 function updateUserOrgData($userId, array $orgData, array $staffData)
 {
     $user = new CUser();
@@ -367,7 +423,7 @@ function updateUserOrgData($userId, array $orgData, array $staffData)
         'UF_1C_ORG_NODE' => $orgData['NODE_ID'],
         'UF_1C_ORG_PATH' => $orgData['PATH'],
         'UF_1C_ORG_LEVEL' => $orgData['LEVEL'],
-        'UF_1C_MANAGER_GUID' => normalizeName($staffData['managerGuid'] ?? ''),
+        'UF_1C_MANAGER_GUID' => normalizeGuid($staffData['managerGuid'] ?? ''),
         'UF_1C_SYNC_AT' => new DateTime(),
     ];
 
@@ -501,9 +557,21 @@ try {
                 implode(' / ', $ceoChain)
             );
 
+            $managerGuid = normalizeGuid($staffData['managerGuid'] ?? '');
+            $managerUserId = findUserIdBy1cGuid($managerGuid);
+
+            logMessage(
+                'Manager GUID=' .
+                ($managerGuid !== '' ? $managerGuid : 'empty') .
+                ', USER_ID=' .
+                ($managerUserId > 0 ? $managerUserId : 'not found')
+            );
+
             $orgData = syncOrgChain(
                 $dataClass,
-                $ceoChain
+                $ceoChain,
+                $managerGuid,
+                $managerUserId
             );
 
             if (empty($orgData['NODE_ID'])) {
