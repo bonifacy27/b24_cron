@@ -1,0 +1,473 @@
+[2026-06-25 00:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 00:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 00:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 00:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 01:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 01:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 01:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 01:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 02:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 02:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 02:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 02:44:02] Active users with GUID: users=1025, guids=1023
+[2026-06-25 03:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 03:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 03:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 03:44:02] Active users with GUID: users=1025, guids=1023
+[2026-06-25 04:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 04:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 04:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 04:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 05:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 05:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 05:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 05:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 06:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 06:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 06:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 06:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 07:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 07:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 07:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 07:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 08:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 08:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 08:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 08:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 09:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 09:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 09:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 09:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 10:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 10:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 10:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 10:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 11:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 11:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 11:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 11:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 12:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 12:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 12:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 12:44:02] Active users with GUID: users=1025, guids=1023
+[2026-06-25 13:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 13:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 13:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 13:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 14:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 14:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 14:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 14:44:02] Active users with GUID: users=1025, guids=1023
+[2026-06-25 15:44:04] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 15:44:04] Cutoff date (>=): 2025-12-25
+[2026-06-25 15:44:04] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 15:44:04] Active users with GUID: users=1025, guids=1023
+[2026-06-25 16:10:11] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:11] HL->SQL done: 0
+[2026-06-25 16:10:11] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:11] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:11] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:11] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=8769.435s ===
+[2026-06-25 16:10:11] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:11] HL->SQL done: 0
+[2026-06-25 16:10:11] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:11] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:11] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:11] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=5169.541s ===
+[2026-06-25 16:10:11] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:11] HL->SQL done: 0
+[2026-06-25 16:10:11] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:11] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:11] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:11] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=15970.004s ===
+[2026-06-25 16:10:12] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:12] HL->SQL done: 0
+[2026-06-25 16:10:12] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:12] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:12] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:12] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=23170.496s ===
+[2026-06-25 16:10:12] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:12] HL->SQL done: 0
+[2026-06-25 16:10:12] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:12] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:12] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:12] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=12370.152s ===
+[2026-06-25 16:10:12] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:12] HL->SQL done: 0
+[2026-06-25 16:10:12] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:12] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:12] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:12] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=1567.823s ===
+[2026-06-25 16:10:13] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:13] HL->SQL done: 0
+[2026-06-25 16:10:13] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:13] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:13] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:13] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=19571.846s ===
+[2026-06-25 16:10:13] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:13] HL->SQL done: 0
+[2026-06-25 16:10:13] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:10:13] Time budget reached during SQL->HL main loop
+[2026-06-25 16:10:13] Time budget reached during SQL->HL derived backfill
+[2026-06-25 16:10:13] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=26771.78s ===
+[2026-06-25 16:10:20] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:20] HL->SQL done: 0
+[2026-06-25 16:10:21] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:21] HL->SQL done: 0
+[2026-06-25 16:10:22] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:22] HL->SQL done: 0
+[2026-06-25 16:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:23] HL->SQL done: 0
+[2026-06-25 16:10:24] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:24] HL->SQL done: 0
+[2026-06-25 16:10:24] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:24] HL->SQL done: 0
+[2026-06-25 16:10:25] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:25] HL->SQL done: 0
+[2026-06-25 16:10:30] Time budget reached in HL->SQL MERGE
+[2026-06-25 16:10:30] HL->SQL done: 0
+[2026-06-25 16:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 16:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 16:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 16:44:02] Active users with GUID: users=1025, guids=1023
+[2026-06-25 16:44:11] HL->SQL ОБНОВЛЕНИЕ 441 rows: id=28511 статус=8 состояние=1922, id=30726 статус=6 состояние=1923, id=25802 статус=8 состояние=1921, id=26132 статус=5 состояние=1923, id=28828 статус=5 состояние=1923, id=29701 статус=5 состояние=1923, id=30684 статус=5 состояние=1923, id=32825 статус=5 состояние=1923, id=33091 статус=5 состояние=1923, id=33092 статус=5 состояние=1923, id=34012 статус=5 состояние=1923, id=34444 статус=5 состояние=1923, id=34602 статус=5 состояние=1923, id=34703 статус=5 состояние=1923, id=34744 статус=5 состояние=1923, id=25690 статус=4 состояние=1922, id=29758 статус=4 состояние=1922, id=29899 статус=4 состояние=1922, id=29987 статус=4 состояние=1922, id=30587 статус=4 состояние=1922, id=33130 статус=4 состояние=1922, id=33904 статус=4 состояние=1922, id=34629 статус=4 состояние=1922, id=34646 статус=4 состояние=1922, id=34791 статус=4 состояние=1922, id=30940 статус=7 состояние=1922, id=34816 статус=4 состояние=1921, id=34817 статус=4 состояние=1921, id=34818 статус=4 состояние=1921, id=34819 статус=4 состояние=1921, id=34820 статус=4 состояние=1921, id=27674 статус=7 состояние=1922, id=29317 статус=7 состояние=1922, id=34826 статус=4 состояние=1921, id=34827 статус=4 состояние=1921, id=34824 статус=4 состояние=1921, id=34825 статус=4 состояние=1921, id=34830 статус=4 состояние=1921, id=34831 статус=4 состояние=1921, id=25767 статус=8 состояние=1921, id=25786 статус=8 состояние=1922, id=25804 статус=8 состояние=1921, id=25805 статус=8 состояние=1921, id=25806 статус=8 состояние=1921, id=25841 статус=8 состояние=1922, id=25876 статус=8 состояние=1922, id=26226 статус=8 состояние=1921, id=26227 статус=8 состояние=1921, id=26303 статус=8 состояние=1922, id=26551 статус=8 состояние=1922, id=26951 статус=8 состояние=1922, id=27210 статус=8 состояние=1922, id=27211 статус=8 состояние=1921, id=27374 статус=8 состояние=1922, id=27376 статус=8 состояние=1921, id=28063 статус=8 состояние=1923, id=28513 статус=8 состояние=1922, id=28541 статус=8 состояние=1922, id=28591 статус=8 состояние=1922, id=28788 статус=8 состояние=1922, id=28935 статус=8 состояние=1921, id=29364 статус=8 состояние=1921, id=29504 статус=8 состояние=1921, id=29689 статус=8 состояние=1922, id=29739 статус=8 состояние=1921, id=30141 статус=8 состояние=1921, id=30191 статус=8 состояние=1921, id=30789 статус=8 состояние=1922, id=32153 статус=8 состояние=1921, id=32276 статус=8 состояние=1921, id=32545 статус=8 состояние=1922, id=32547 статус=8 состояние=1921, id=32576 статус=8 состояние=1922, id=33010 статус=8 состояние=1922, id=33033 статус=8 состояние=1922, id=33047 статус=8 состояние=1921, id=33058 статус=8 состояние=1921, id=33060 статус=8 состояние=1921, id=33114 статус=8 состояние=1921, id=33115 статус=8 состояние=1921, id=33265 статус=8 состояние=1923, id=33306 статус=8 состояние=1922, id=33663 статус=8 состояние=1922, id=33861 статус=8 состояние=1923, id=33878 статус=8 состояние=1922, id=33884 статус=8 состояние=1921, id=33885 статус=8 состояние=1921, id=33983 статус=8 состояние=1921, id=33984 статус=8 состояние=1921, id=34542 статус=8 состояние=1921, id=34575 статус=8 состояние=1921, id=34642 статус=8 состояние=1921, id=34655 статус=4 состояние=1921, id=34656 статус=4 состояние=1921, id=34663 статус=8 состояние=1921, id=34730 статус=4 состояние=1921, id=34731 статус=4 состояние=1921, id=34745 статус=4 состояние=1921, id=34746 статус=4 состояние=1921, id=34783 статус=8 состояние=1921, id=34784 статус=8 состояние=1921, id=34787 статус=4 состояние=1921, id=34788 статус=4 состояние=1921, id=34790 статус=4 состояние=1921, id=34802 статус=4 состояние=1921, id=34803 статус=4 состояние=1921, id=34804 статус=4 состояние=1921, id=34805 статус=4 состояние=1921, id=34806 статус=4 состояние=1921, id=34807 статус=4 состояние=1921, id=34808 статус=4 состояние=1921, id=25577 статус=6 состояние=1923, id=25578 статус=6 состояние=1923, id=25579 статус=8 состояние=1923, id=25625 статус=8 состояние=1925, id=25626 статус=6 состояние=1923, id=25769 статус=8 состояние=1928, id=25803 статус=6 состояние=1923, id=25870 статус=6 состояние=1923, id=25888 статус=6 состояние=1923, id=25944 статус=6 состояние=1923, id=25945 статус=6 состояние=1923, id=25946 статус=6 состояние=1923, id=25988 статус=6 состояние=1923, id=25989 статус=6 состояние=1923, id=26059 статус=8 состояние=1944, id=26060 статус=8 состояние=1928, id=26081 статус=6 состояние=1923, id=26172 статус=6 состояние=1923, id=26266 статус=8 состояние=1928, id=26318 статус=6 состояние=1923, id=26319 статус=6 состояние=1923, id=26588 статус=6 состояние=1923, id=26589 статус=6 состояние=1923, id=26590 статус=6 состояние=1923, id=26828 статус=6 состояние=1923, id=26916 статус=6 состояние=1923, id=26987 статус=6 состояние=1923, id=26997 статус=6 состояние=1923, id=27007 статус=6 состояние=1923, id=27008 статус=6 состояние=1923, id=27057 статус=8 состояние=1924, id=27101 статус=6 состояние=1923, id=27102 статус=6 состояние=1923, id=27215 статус=6 состояние=1923, id=27216 статус=6 состояние=1923, id=27217 статус=6 состояние=1923, id=27397 статус=6 состояние=1923, id=27398 статус=6 состояние=1923, id=27434 статус=6 состояние=1923, id=27519 статус=8 состояние=1944, id=27521 статус=6 состояние=1923, id=27535 статус=8 состояние=1944, id=27536 статус=6 состояние=1923, id=27636 статус=6 состояние=1923, id=27637 статус=6 состояние=1923, id=27759 статус=6 состояние=1923, id=27760 статус=6 состояние=1923, id=27767 статус=6 состояние=1923, id=27768 статус=6 состояние=1923, id=27769 статус=6 состояние=1923, id=27800 статус=6 состояние=1923, id=27816 статус=6 состояние=1923, id=27817 статус=6 состояние=1923, id=27818 статус=6 состояние=1923, id=27906 статус=6 состояние=1923, id=27945 статус=6 состояние=1923, id=27946 статус=6 состояние=1923, id=27984 статус=8 состояние=1928, id=27990 статус=6 состояние=1923, id=27991 статус=6 состояние=1923, id=28004 статус=8 состояние=1924, id=28031 статус=8 состояние=1924, id=28164 статус=6 состояние=1923, id=28171 статус=6 состояние=1923, id=28178 статус=6 состояние=1923, id=28179 статус=6 состояние=1923, id=28180 статус=6 состояние=1923, id=28243 статус=6 состояние=1923, id=28244 статус=8 состояние=1928, id=28307 статус=8 состояние=1928, id=28328 статус=8 состояние=1924, id=28359 статус=6 состояние=1923, id=28372 статус=6 состояние=1923, id=28407 статус=6 состояние=1923, id=28457 статус=6 состояние=1923, id=28458 статус=6 состояние=1923, id=28460 статус=6 состояние=1923, id=28499 статус=8 состояние=1924, id=28500 статус=8 состояние=1928, id=28512 статус=6 состояние=1923, id=28530 статус=6 состояние=1923, id=28567 статус=8 состояние=1924, id=28568 статус=6 состояние=1923, id=28782 статус=6 состояние=1923, id=28783 статус=6 состояние=1923, id=28826 статус=6 состояние=1923, id=28842 статус=6 состояние=1923, id=28843 статус=6 состояние=1923, id=29018 статус=6 состояние=1923, id=29019 статус=8 состояние=1928, id=29073 статус=8 состояние=1924, id=29074 статус=8 состояние=1928, id=29088 статус=6 состояние=1923, id=29089 статус=6 состояние=1923, id=29173 статус=8 состояние=1925, id=29294 статус=8 состояние=1924, id=29381 статус=6 состояние=1923, id=29382 статус=6 состояние=1923, id=29438 статус=6 состояние=1923, id=29439 статус=6 состояние=1923, id=29496 статус=6 состояние=1923, id=29497 статус=6 состояние=1923, id=29565 статус=8 состояние=1925, id=29589 статус=6 состояние=1923, id=29593 статус=6 состояние=1923, id=29594 статус=6 состояние=1923, id=29671 статус=8 состояние=1944, id=29674 статус=8 состояние=1928, id=29709 статус=6 состояние=1923, id=29748 статус=8 состояние=1928, id=29772 статус=8 состояние=1944, id=29773 статус=8 состояние=1928, id=30043 статус=6 состояние=1923, id=30063 статус=6 состояние=1923, id=30064 статус=6 состояние=1923, id=30086 статус=8 состояние=1928, id=30105 статус=6 состояние=1923, id=30269 статус=8 состояние=1944, id=30270 статус=8 состояние=1928, id=30432 статус=6 состояние=1923, id=30437 статус=6 состояние=1923, id=30449 статус=6 состояние=1923, id=30450 статус=8 состояние=1928, id=30488 статус=8 состояние=1944, id=30489 статус=6 состояние=1923, id=30506 статус=8 состояние=1928, id=30517 статус=8 состояние=1944, id=30518 статус=6 состояние=1923, id=30519 статус=6 состояние=1923, id=30528 статус=6 состояние=1923, id=30529 статус=6 состояние=1923, id=30560 статус=6 состояние=1923, id=30566 статус=6 состояние=1923, id=30567 статус=6 состояние=1923, id=30568 статус=6 состояние=1923, id=30687 статус=8 состояние=1924, id=30688 статус=6 состояние=1923, id=30716 статус=8 состояние=1924, id=30727 статус=6 состояние=1923, id=30882 статус=8 состояние=1924, id=31038 статус=6 состояние=1923, id=31039 статус=6 состояние=1923, id=31076 статус=6 состояние=1923, id=31077 статус=6 состояние=1923, id=31078 статус=6 состояние=1923, id=31220 статус=8 состояние=1944, id=31269 статус=8 состояние=1944, id=31270 статус=6 состояние=1923, id=31322 статус=8 состояние=1925, id=31335 статус=6 состояние=1923, id=31379 статус=6 состояние=1923, id=31513 статус=6 состояние=1923, id=31514 статус=6 состояние=1923, id=31667 статус=6 состояние=1923, id=31668 статус=6 состояние=1923, id=31721 статус=6 состояние=1923, id=31722 статус=6 состояние=1923, id=31747 статус=6 состояние=1923, id=31801 статус=8 состояние=1924, id=31803 статус=8 состояние=1944, id=31804 статус=8 состояние=1925, id=31805 статус=6 состояние=1923, id=31817 статус=8 состояние=1924, id=31914 статус=6 состояние=1923, id=31915 статус=8 состояние=1923, id=31922 статус=6 состояние=1921, id=31923 статус=6 состояние=1923, id=31938 статус=6 состояние=1923, id=31939 статус=6 состояние=1923, id=31940 статус=6 состояние=1923, id=31943 статус=6 состояние=1923, id=31944 статус=6 состояние=1923, id=31952 статус=6 состояние=1923, id=31992 статус=6 состояние=1923, id=32054 статус=6 состояние=1923, id=32061 статус=6 состояние=1923, id=32076 статус=6 состояние=1923, id=32085 статус=8 состояние=1944, id=32123 статус=6 состояние=1923, id=32128 статус=8 состояние=1944, id=32143 статус=6 состояние=1923, id=32151 статус=6 состояние=1923, id=32152 статус=6 состояние=1923, id=32214 статус=6 состояние=1923, id=32215 статус=6 состояние=1923, id=32231 статус=6 состояние=1923, id=32238 статус=8 состояние=1924, id=32245 статус=6 состояние=1923, id=32265 статус=6 состояние=1923, id=32305 статус=6 состояние=1923, id=32307 статус=6 состояние=1923, id=32308 статус=8 состояние=1925, id=32310 статус=8 состояние=1944, id=32325 статус=6 состояние=1923, id=32367 статус=8 состояние=1944, id=32368 статус=6 состояние=1923, id=32376 статус=8 состояние=1944, id=32392 статус=8 состояние=1944, id=32400 статус=6 состояние=1923, id=32404 статус=6 состояние=1923, id=32407 статус=6 состояние=1921, id=32415 статус=6 состояние=1923, id=32447 статус=6 состояние=1923, id=32478 статус=6 состояние=1923, id=32495 статус=6 состояние=1923, id=32540 статус=6 состояние=1923, id=32555 статус=8 состояние=1925, id=32692 статус=6 состояние=1923, id=32693 статус=6 состояние=1923, id=32694 статус=6 состояние=1923, id=32695 статус=6 состояние=1923, id=32696 статус=8 состояние=1925, id=32713 статус=8 состояние=1944, id=32716 статус=8 состояние=1944, id=32735 статус=6 состояние=1923, id=32765 статус=8 состояние=1925, id=32770 статус=6 состояние=1923, id=32782 статус=6 состояние=1923, id=32790 статус=6 состояние=1923, id=32802 статус=8 состояние=1944, id=32803 статус=8 состояние=1925, id=32838 статус=6 состояние=1923, id=32843 статус=6 состояние=1923, id=32844 статус=6 состояние=1923, id=32880 статус=6 состояние=1923, id=32881 статус=6 состояние=1923, id=32885 статус=8 состояние=1925, id=32886 статус=8 состояние=1925, id=32905 статус=8 состояние=1925, id=32915 статус=8 состояние=1944, id=32980 статус=6 состояние=1923, id=32981 статус=6 состояние=1923, id=32982 статус=6 состояние=1923, id=33002 статус=8 состояние=1928, id=33014 статус=6 состояние=1923, id=33028 статус=6 состояние=1923, id=33104 статус=6 состояние=1923, id=33105 статус=6 состояние=1923, id=33139 статус=6 состояние=1923, id=33191 статус=6 состояние=1921, id=33202 статус=6 состояние=1923, id=33206 статус=6 состояние=1923, id=33207 статус=6 состояние=1923, id=33214 статус=6 состояние=1923, id=33233 статус=6 состояние=1923, id=33234 статус=8 состояние=1925, id=33235 статус=6 состояние=1923, id=33236 статус=8 состояние=1928, id=33242 статус=8 состояние=1928, id=33275 статус=8 состояние=1925, id=33295 статус=6 состояние=1923, id=33349 статус=8 состояние=1928, id=33373 статус=6 состояние=1923, id=33383 статус=8 состояние=1928, id=33385 статус=8 состояние=1925, id=33386 статус=8 состояние=1928, id=33407 статус=6 состояние=1923, id=33433 статус=6 состояние=1923, id=33434 статус=6 состояние=1923, id=33452 статус=6 состояние=1923, id=33461 статус=6 состояние=1923, id=33635 статус=6 состояние=1923, id=33636 статус=8 состояние=1928, id=33646 статус=6 состояние=1923, id=33647 статус=6 состояние=1923, id=33648 статус=8 состояние=1928, id=33657 статус=6 состояние=1923, id=33658 статус=6 состояние=1923, id=33683 статус=6 состояние=1923, id=33714 статус=6 состояние=1923, id=33720 статус=8 состояние=1928, id=33729 статус=6 состояние=1923, id=33732 статус=8 состояние=1928, id=33768 статус=6 состояние=1923, id=33822 статус=8 состояние=1928, id=33845 статус=6 состояние=1923, id=33860 статус=6 состояние=1921, id=33890 статус=6 состояние=1923, id=33897 статус=6 состояние=1923, id=33915 статус=6 состояние=1923, id=33916 статус=6 состояние=1923, id=33925 статус=8 состояние=1928, id=33945 статус=6 состояние=1923, id=33946 статус=6 состояние=1923, id=34009 статус=7 состояние=1921, id=34010 статус=6 состояние=1923, id=34035 статус=8 состояние=1928, id=34055 статус=6 состояние=1923, id=34073 статус=6 состояние=1923, id=34273 статус=6 состояние=1923, id=34313 статус=6 состояние=1923, id=34348 статус=6 состояние=1923, id=34362 статус=6 состояние=1923, id=34367 статус=6 состояние=1923, id=34389 статус=6 состояние=1923, id=34400 статус=6 состояние=1923, id=34416 статус=6 состояние=1923, id=34420 статус=6 состояние=1921, id=34421 статус=6 состояние=1923, id=34432 статус=6 состояние=1923, id=34440 статус=6 состояние=1923, id=34445 статус=6 состояние=1923, id=34456 статус=6 состояние=1923, id=34457 статус=6 состояние=1923, id=34465 статус=6 состояние=1923, id=34466 статус=6 состояние=1923, id=34469 статус=6 состояние=1923, id=34483 статус=6 состояние=1923, id=34499 статус=6 состояние=1923, id=34500 статус=6 состояние=1923, id=34507 статус=6 состояние=1923, id=34555 статус=6 состояние=1923, id=34566 статус=6 состояние=1923, id=34573 статус=6 состояние=1921, id=34577 статус=5 состояние=1923, id=34579 статус=6 состояние=1923, id=34592 статус=6 состояние=1923, id=34597 статус=6 состояние=1923, id=34624 статус=6 состояние=1921, id=34654 статус=6 состояние=1923, id=34658 статус=6 состояние=1921, id=34659 статус=6 состояние=1921, id=34662 статус=6 состояние=1923, id=34664 статус=6 состояние=1923, id=34711 статус=6 состояние=1921, id=34732 статус=6 состояние=1923, id=34755 статус=6 состояние=1921, id=30001 статус=7 состояние=1922, id=31921 статус=7 состояние=1921, id=32546 статус=7 состояние=1921
+[2026-06-25 16:44:11] HL->SQL done: 441
+[2026-06-25 16:44:11] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:44:11] SQL->HL fetch window: cursor=2026-04-17 09:44:24, id='31500'
+[2026-06-25 16:44:13] SQL->HL: no more rows after cursor
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26060_a: base vacation 26060 already cancelled (HL#26060)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33720_a: base vacation 33720 already cancelled (HL#33720)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33648_a: base vacation 33648 already cancelled (HL#33648)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33636_a: base vacation 33636 already cancelled (HL#33636)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33236_a: base vacation 33236 already cancelled (HL#33236)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33002_a: base vacation 33002 already cancelled (HL#33002)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30086_a: base vacation 30086 already cancelled (HL#30086)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29748_a: base vacation 29748 already cancelled (HL#29748)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29074_a: base vacation 29074 already cancelled (HL#29074)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29019_a: base vacation 29019 already cancelled (HL#29019)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27984_a: base vacation 27984 already cancelled (HL#27984)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=34035_a: base vacation 34035 already cancelled (HL#34035)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33925_a: base vacation 33925 already cancelled (HL#33925)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33732_a: base vacation 33732 already cancelled (HL#33732)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33386_a: base vacation 33386 already cancelled (HL#33386)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33383_a: base vacation 33383 already cancelled (HL#33383)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33349_a: base vacation 33349 already cancelled (HL#33349)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30450_a: base vacation 30450 already cancelled (HL#30450)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29773_a: base vacation 29773 already cancelled (HL#29773)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28500_a: base vacation 28500 already cancelled (HL#28500)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28244_a: base vacation 28244 already cancelled (HL#28244)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26266_a: base vacation 26266 already cancelled (HL#26266)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25769_a: base vacation 25769 already cancelled (HL#25769)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33822_a: base vacation 33822 already cancelled (HL#33822)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33242_a: base vacation 33242 already cancelled (HL#33242)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30506_a: base vacation 30506 already cancelled (HL#30506)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30270_a: base vacation 30270 already cancelled (HL#30270)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29674_a: base vacation 29674 already cancelled (HL#29674)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28307_a: base vacation 28307 already cancelled (HL#28307)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26229_a: base vacation 26229 already cancelled (HL#26229)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32561_a: base vacation 32561 already cancelled (HL#32561)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32381_a: base vacation 32381 already cancelled (HL#32381)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32176_a: base vacation 32176 already cancelled (HL#32176)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32093_a: base vacation 32093 already cancelled (HL#32093)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31322_a: base vacation 31322 already cancelled (HL#31322)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28838_a: base vacation 28838 already cancelled (HL#28838)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28689_a: base vacation 28689 already cancelled (HL#28689)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26887_a: base vacation 26887 already cancelled (HL#26887)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25998_a: base vacation 25998 already cancelled (HL#25998)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33302_a: base vacation 33302 already cancelled (HL#33302)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33227_a: base vacation 33227 already cancelled (HL#33227)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33121_a: base vacation 33121 already cancelled (HL#33121)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32945_a: base vacation 32945 already cancelled (HL#32945)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32822_a: base vacation 32822 already cancelled (HL#32822)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32792_a: base vacation 32792 already cancelled (HL#32792)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32073_a: base vacation 32073 already cancelled (HL#32073)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31635_a: base vacation 31635 already cancelled (HL#31635)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31303_a: base vacation 31303 already cancelled (HL#31303)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29820_a: base vacation 29820 already cancelled (HL#29820)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29565_a: base vacation 29565 already cancelled (HL#29565)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29173_a: base vacation 29173 already cancelled (HL#29173)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28996_a: base vacation 28996 already cancelled (HL#28996)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28779_a: base vacation 28779 already cancelled (HL#28779)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28325_a: base vacation 28325 already cancelled (HL#28325)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26968_a: base vacation 26968 already cancelled (HL#26968)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26450_a: base vacation 26450 already cancelled (HL#26450)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26410_a: base vacation 26410 already cancelled (HL#26410)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25828_a: base vacation 25828 already cancelled (HL#25828)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25583_a: base vacation 25583 already cancelled (HL#25583)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33385_a: base vacation 33385 already cancelled (HL#33385)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33234_a: base vacation 33234 already cancelled (HL#33234)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33178_a: base vacation 33178 already cancelled (HL#33178)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33086_a: base vacation 33086 already cancelled (HL#33086)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33085_a: base vacation 33085 already cancelled (HL#33085)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33003_a: base vacation 33003 already cancelled (HL#33003)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32918_a: base vacation 32918 already cancelled (HL#32918)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32758_a: base vacation 32758 already cancelled (HL#32758)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32739_a: base vacation 32739 already cancelled (HL#32739)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32696_a: base vacation 32696 already cancelled (HL#32696)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32308_a: base vacation 32308 already cancelled (HL#32308)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32074_a: base vacation 32074 already cancelled (HL#32074)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32034_a: base vacation 32034 already cancelled (HL#32034)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30438_a: base vacation 30438 already cancelled (HL#30438)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29907_a: base vacation 29907 already cancelled (HL#29907)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29691_a: base vacation 29691 already cancelled (HL#29691)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29104_a: base vacation 29104 already cancelled (HL#29104)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27021_a: base vacation 27021 already cancelled (HL#27021)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26390_a: base vacation 26390 already cancelled (HL#26390)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25735_a: base vacation 25735 already cancelled (HL#25735)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25625_a: base vacation 25625 already cancelled (HL#25625)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33389_a: base vacation 33389 already cancelled (HL#33389)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33275_a: base vacation 33275 already cancelled (HL#33275)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33110_a: base vacation 33110 already cancelled (HL#33110)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32905_a: base vacation 32905 already cancelled (HL#32905)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32883_a: base vacation 32883 already cancelled (HL#32883)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32816_a: base vacation 32816 already cancelled (HL#32816)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32814_a: base vacation 32814 already cancelled (HL#32814)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32560_a: base vacation 32560 already cancelled (HL#32560)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31947_a: base vacation 31947 already cancelled (HL#31947)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31804_a: base vacation 31804 already cancelled (HL#31804)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31104_a: base vacation 31104 already cancelled (HL#31104)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30627_a: base vacation 30627 already cancelled (HL#30627)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30274_a: base vacation 30274 already cancelled (HL#30274)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29501_a: base vacation 29501 already cancelled (HL#29501)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27471_a: base vacation 27471 already cancelled (HL#27471)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26135_a: base vacation 26135 already cancelled (HL#26135)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33059_a: base vacation 33059 already cancelled (HL#33059)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32992_a: base vacation 32992 already cancelled (HL#32992)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32986_a: base vacation 32986 already cancelled (HL#32986)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32803_a: base vacation 32803 already cancelled (HL#32803)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32780_a: base vacation 32780 already cancelled (HL#32780)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32566_a: base vacation 32566 already cancelled (HL#32566)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32466_a: base vacation 32466 already cancelled (HL#32466)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32275_a: base vacation 32275 already cancelled (HL#32275)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31976_a: base vacation 31976 already cancelled (HL#31976)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31341_a: base vacation 31341 already cancelled (HL#31341)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30404_a: base vacation 30404 already cancelled (HL#30404)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29623_a: base vacation 29623 already cancelled (HL#29623)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28206_a: base vacation 28206 already cancelled (HL#28206)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27452_a: base vacation 27452 already cancelled (HL#27452)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=25700_a: base vacation 25700 already cancelled (HL#25700)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32886_a: base vacation 32886 already cancelled (HL#32886)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32885_a: base vacation 32885 already cancelled (HL#32885)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32765_a: base vacation 32765 already cancelled (HL#32765)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32570_a: base vacation 32570 already cancelled (HL#32570)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32510_a: base vacation 32510 already cancelled (HL#32510)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=31120_a: base vacation 31120 already cancelled (HL#31120)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=30095_a: base vacation 30095 already cancelled (HL#30095)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29386_a: base vacation 29386 already cancelled (HL#29386)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27467_a: base vacation 27467 already cancelled (HL#27467)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27156_a: base vacation 27156 already cancelled (HL#27156)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=27128_a: base vacation 27128 already cancelled (HL#27128)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26957_a: base vacation 26957 already cancelled (HL#26957)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26904_a: base vacation 26904 already cancelled (HL#26904)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26401_a: base vacation 26401 already cancelled (HL#26401)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=26347_a: base vacation 26347 already cancelled (HL#26347)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=33030_a: base vacation 33030 already cancelled (HL#33030)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32557_a: base vacation 32557 already cancelled (HL#32557)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=32555_a: base vacation 32555 already cancelled (HL#32555)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29393_a: base vacation 29393 already cancelled (HL#29393)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=29341_a: base vacation 29341 already cancelled (HL#29341)
+[2026-06-25 16:44:13] SQL->HL ДОП prefix=28696_a: base vacation 28696 already cancelled (HL#28696)
+[2026-06-25 17:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 17:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 17:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 17:44:01] Active users with GUID: users=1025, guids=1023
+[2026-06-25 18:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 18:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 18:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 18:44:01] Active users with GUID: users=1023, guids=1021
+[2026-06-25 19:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 19:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 19:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 19:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-25 20:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 20:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 20:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 20:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-25 21:09:34] WARN vacation rewrite HL#31747: can't update Absence_Renew_Date: MS Sql query error: SQLSTATE: HY000; code: 0; message: [Microsoft][ODBC Driver 17 for SQL Server]Unspecified error occurred on SQL Server. Connection may have been terminated by the server.
+SQLSTATE: HY000; code: 596; message: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot continue the execution because the session is in the kill state.
+SQLSTATE: 01000; code: 3621; message: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+
+[2026-06-25 21:09:34] Time budget reached during vacation balance rewrite
+[2026-06-25 21:09:34] === Test sync done: HL->SQL=441, SQL->HL=0, RecalcRewrite=1, elapsed=15932.174s ===
+[2026-06-25 21:09:42] Time budget reached in HL->SQL MERGE
+[2026-06-25 21:09:42] HL->SQL done: 0
+[2026-06-25 21:09:42] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:09:42] Time budget reached during SQL->HL main loop
+[2026-06-25 21:09:42] Time budget reached during SQL->HL derived backfill
+[2026-06-25 21:09:42] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=12340.605s ===
+[2026-06-25 21:09:42] Time budget reached in HL->SQL MERGE
+[2026-06-25 21:09:42] HL->SQL done: 0
+[2026-06-25 21:09:42] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:09:42] Time budget reached during SQL->HL main loop
+[2026-06-25 21:09:42] Time budget reached during SQL->HL derived backfill
+[2026-06-25 21:09:42] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=5140.768s ===
+[2026-06-25 21:09:42] Time budget reached in HL->SQL MERGE
+[2026-06-25 21:09:42] HL->SQL done: 0
+[2026-06-25 21:09:42] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:09:42] Time budget reached during SQL->HL main loop
+[2026-06-25 21:09:42] Time budget reached in HL->SQL MERGE
+[2026-06-25 21:09:42] HL->SQL done: 0
+[2026-06-25 21:09:42] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:09:42] Time budget reached during SQL->HL main loop
+[2026-06-25 21:09:42] Time budget reached during SQL->HL derived backfill
+[2026-06-25 21:09:42] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=1541.664s ===
+[2026-06-25 21:09:42] Time budget reached during SQL->HL derived backfill
+[2026-06-25 21:09:42] === Test sync done: HL->SQL=0, SQL->HL=0, RecalcRewrite=0, elapsed=8741.659s ===
+[2026-06-25 21:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 21:44:01] Cutoff date (>=): 2025-12-25
+[2026-06-25 21:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 21:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-25 21:44:10] HL->SQL ОБНОВЛЕНИЕ 11 rows: id=31747 статус=6 состояние=1923, id=34837 статус=4 состояние=1921, id=31921 статус=8 состояние=1921, id=34838 статус=4 состояние=1921, id=26783 статус=7 состояние=1921, id=32546 статус=8 состояние=1921, id=34809 статус=4 состояние=1921, id=34822 статус=4 состояние=1921, id=29317 статус=8 состояние=1922, id=34823 статус=4 состояние=1921, id=30975 статус=7 состояние=1922
+[2026-06-25 21:44:10] HL->SQL done: 11
+[2026-06-25 21:44:10] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:44:10] SQL->HL fetch window: cursor=2026-04-17 09:44:24, id='31500'
+[2026-06-25 21:44:11] SQL->HL: no more rows after cursor
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26060_a: base vacation 26060 already cancelled (HL#26060)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33720_a: base vacation 33720 already cancelled (HL#33720)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33648_a: base vacation 33648 already cancelled (HL#33648)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33636_a: base vacation 33636 already cancelled (HL#33636)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33236_a: base vacation 33236 already cancelled (HL#33236)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33002_a: base vacation 33002 already cancelled (HL#33002)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30086_a: base vacation 30086 already cancelled (HL#30086)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29748_a: base vacation 29748 already cancelled (HL#29748)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29074_a: base vacation 29074 already cancelled (HL#29074)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29019_a: base vacation 29019 already cancelled (HL#29019)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27984_a: base vacation 27984 already cancelled (HL#27984)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=34035_a: base vacation 34035 already cancelled (HL#34035)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33925_a: base vacation 33925 already cancelled (HL#33925)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33732_a: base vacation 33732 already cancelled (HL#33732)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33386_a: base vacation 33386 already cancelled (HL#33386)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33383_a: base vacation 33383 already cancelled (HL#33383)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33349_a: base vacation 33349 already cancelled (HL#33349)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30450_a: base vacation 30450 already cancelled (HL#30450)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29773_a: base vacation 29773 already cancelled (HL#29773)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28500_a: base vacation 28500 already cancelled (HL#28500)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28244_a: base vacation 28244 already cancelled (HL#28244)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26266_a: base vacation 26266 already cancelled (HL#26266)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25769_a: base vacation 25769 already cancelled (HL#25769)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33822_a: base vacation 33822 already cancelled (HL#33822)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33242_a: base vacation 33242 already cancelled (HL#33242)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30506_a: base vacation 30506 already cancelled (HL#30506)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30270_a: base vacation 30270 already cancelled (HL#30270)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29674_a: base vacation 29674 already cancelled (HL#29674)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28307_a: base vacation 28307 already cancelled (HL#28307)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26229_a: base vacation 26229 already cancelled (HL#26229)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32561_a: base vacation 32561 already cancelled (HL#32561)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32381_a: base vacation 32381 already cancelled (HL#32381)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32176_a: base vacation 32176 already cancelled (HL#32176)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32093_a: base vacation 32093 already cancelled (HL#32093)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31322_a: base vacation 31322 already cancelled (HL#31322)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28838_a: base vacation 28838 already cancelled (HL#28838)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28689_a: base vacation 28689 already cancelled (HL#28689)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26887_a: base vacation 26887 already cancelled (HL#26887)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25998_a: base vacation 25998 already cancelled (HL#25998)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33302_a: base vacation 33302 already cancelled (HL#33302)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33227_a: base vacation 33227 already cancelled (HL#33227)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33121_a: base vacation 33121 already cancelled (HL#33121)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32945_a: base vacation 32945 already cancelled (HL#32945)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32822_a: base vacation 32822 already cancelled (HL#32822)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32792_a: base vacation 32792 already cancelled (HL#32792)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32073_a: base vacation 32073 already cancelled (HL#32073)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31635_a: base vacation 31635 already cancelled (HL#31635)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31303_a: base vacation 31303 already cancelled (HL#31303)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29820_a: base vacation 29820 already cancelled (HL#29820)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29565_a: base vacation 29565 already cancelled (HL#29565)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29173_a: base vacation 29173 already cancelled (HL#29173)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28996_a: base vacation 28996 already cancelled (HL#28996)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28779_a: base vacation 28779 already cancelled (HL#28779)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28325_a: base vacation 28325 already cancelled (HL#28325)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26968_a: base vacation 26968 already cancelled (HL#26968)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26450_a: base vacation 26450 already cancelled (HL#26450)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26410_a: base vacation 26410 already cancelled (HL#26410)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25828_a: base vacation 25828 already cancelled (HL#25828)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25583_a: base vacation 25583 already cancelled (HL#25583)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33385_a: base vacation 33385 already cancelled (HL#33385)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33234_a: base vacation 33234 already cancelled (HL#33234)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33178_a: base vacation 33178 already cancelled (HL#33178)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33086_a: base vacation 33086 already cancelled (HL#33086)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33085_a: base vacation 33085 already cancelled (HL#33085)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33003_a: base vacation 33003 already cancelled (HL#33003)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32918_a: base vacation 32918 already cancelled (HL#32918)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32758_a: base vacation 32758 already cancelled (HL#32758)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32739_a: base vacation 32739 already cancelled (HL#32739)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32696_a: base vacation 32696 already cancelled (HL#32696)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32308_a: base vacation 32308 already cancelled (HL#32308)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32074_a: base vacation 32074 already cancelled (HL#32074)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32034_a: base vacation 32034 already cancelled (HL#32034)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30438_a: base vacation 30438 already cancelled (HL#30438)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29907_a: base vacation 29907 already cancelled (HL#29907)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29691_a: base vacation 29691 already cancelled (HL#29691)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29104_a: base vacation 29104 already cancelled (HL#29104)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27021_a: base vacation 27021 already cancelled (HL#27021)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26390_a: base vacation 26390 already cancelled (HL#26390)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25735_a: base vacation 25735 already cancelled (HL#25735)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25625_a: base vacation 25625 already cancelled (HL#25625)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33389_a: base vacation 33389 already cancelled (HL#33389)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33275_a: base vacation 33275 already cancelled (HL#33275)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33110_a: base vacation 33110 already cancelled (HL#33110)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32905_a: base vacation 32905 already cancelled (HL#32905)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32883_a: base vacation 32883 already cancelled (HL#32883)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32816_a: base vacation 32816 already cancelled (HL#32816)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32814_a: base vacation 32814 already cancelled (HL#32814)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32560_a: base vacation 32560 already cancelled (HL#32560)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31947_a: base vacation 31947 already cancelled (HL#31947)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31804_a: base vacation 31804 already cancelled (HL#31804)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31104_a: base vacation 31104 already cancelled (HL#31104)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30627_a: base vacation 30627 already cancelled (HL#30627)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30274_a: base vacation 30274 already cancelled (HL#30274)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29501_a: base vacation 29501 already cancelled (HL#29501)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27471_a: base vacation 27471 already cancelled (HL#27471)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26135_a: base vacation 26135 already cancelled (HL#26135)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33059_a: base vacation 33059 already cancelled (HL#33059)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32992_a: base vacation 32992 already cancelled (HL#32992)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32986_a: base vacation 32986 already cancelled (HL#32986)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32803_a: base vacation 32803 already cancelled (HL#32803)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32780_a: base vacation 32780 already cancelled (HL#32780)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32566_a: base vacation 32566 already cancelled (HL#32566)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32466_a: base vacation 32466 already cancelled (HL#32466)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32275_a: base vacation 32275 already cancelled (HL#32275)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31976_a: base vacation 31976 already cancelled (HL#31976)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31341_a: base vacation 31341 already cancelled (HL#31341)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30404_a: base vacation 30404 already cancelled (HL#30404)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29623_a: base vacation 29623 already cancelled (HL#29623)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28206_a: base vacation 28206 already cancelled (HL#28206)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27452_a: base vacation 27452 already cancelled (HL#27452)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=25700_a: base vacation 25700 already cancelled (HL#25700)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32886_a: base vacation 32886 already cancelled (HL#32886)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32885_a: base vacation 32885 already cancelled (HL#32885)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32765_a: base vacation 32765 already cancelled (HL#32765)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32570_a: base vacation 32570 already cancelled (HL#32570)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32510_a: base vacation 32510 already cancelled (HL#32510)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=31120_a: base vacation 31120 already cancelled (HL#31120)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=30095_a: base vacation 30095 already cancelled (HL#30095)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29386_a: base vacation 29386 already cancelled (HL#29386)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27467_a: base vacation 27467 already cancelled (HL#27467)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27156_a: base vacation 27156 already cancelled (HL#27156)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=27128_a: base vacation 27128 already cancelled (HL#27128)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26957_a: base vacation 26957 already cancelled (HL#26957)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26904_a: base vacation 26904 already cancelled (HL#26904)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26401_a: base vacation 26401 already cancelled (HL#26401)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=26347_a: base vacation 26347 already cancelled (HL#26347)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=33030_a: base vacation 33030 already cancelled (HL#33030)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32557_a: base vacation 32557 already cancelled (HL#32557)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=32555_a: base vacation 32555 already cancelled (HL#32555)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29393_a: base vacation 29393 already cancelled (HL#29393)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=29341_a: base vacation 29341 already cancelled (HL#29341)
+[2026-06-25 21:44:11] SQL->HL ДОП prefix=28696_a: base vacation 28696 already cancelled (HL#28696)
+[2026-06-25 22:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 22:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 22:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 22:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-25 23:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-25 23:44:02] Cutoff date (>=): 2025-12-25
+[2026-06-25 23:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-25 23:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-26 11:10:10] WARN vacation rewrite HL#31747: can't update Absence_Renew_Date: MS Sql query error: SQLSTATE: HY000; code: 0; message: [Microsoft][ODBC Driver 17 for SQL Server]Unspecified error occurred on SQL Server. Connection may have been terminated by the server.
+SQLSTATE: HY000; code: 596; message: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Cannot continue the execution because the session is in the kill state.
+SQLSTATE: 01000; code: 3621; message: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]The statement has been terminated.
+
+[2026-06-26 11:10:10] Time budget reached during vacation balance rewrite
+[2026-06-26 11:10:22] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:22] HL->SQL done: 0
+[2026-06-26 11:10:27] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:27] HL->SQL done: 0

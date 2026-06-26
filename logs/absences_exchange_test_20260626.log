@@ -1,0 +1,209 @@
+[2026-06-26 00:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 00:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 00:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 00:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 01:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 01:44:02] Cutoff date (>=): 2025-12-26
+[2026-06-26 01:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 01:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-26 02:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 02:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 02:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 02:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 03:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 03:44:02] Cutoff date (>=): 2025-12-26
+[2026-06-26 03:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 03:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-26 04:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 04:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 04:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 04:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 05:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 05:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 05:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 05:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 06:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 06:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 06:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 06:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 07:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 07:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 07:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 07:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 08:44:01] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 08:44:01] Cutoff date (>=): 2025-12-26
+[2026-06-26 08:44:01] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 08:44:01] Active users with GUID: users=1024, guids=1022
+[2026-06-26 09:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 09:44:02] Cutoff date (>=): 2025-12-26
+[2026-06-26 09:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 09:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-26 10:44:02] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 10:44:02] Cutoff date (>=): 2025-12-26
+[2026-06-26 10:44:02] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 10:44:02] Active users with GUID: users=1024, guids=1022
+[2026-06-26 11:10:20] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:20] HL->SQL done: 0
+[2026-06-26 11:10:22] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:22] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:23] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:23] HL->SQL done: 0
+[2026-06-26 11:10:24] Time budget reached in HL->SQL MERGE
+[2026-06-26 11:10:24] HL->SQL done: 0
+[2026-06-26 11:23:29] === Test sync v1.7.0-derived-sync start ===
+[2026-06-26 11:23:29] Cutoff date (>=): 2025-12-26
+[2026-06-26 11:23:29] Allowed UF_STATE: 4,5,6,7,8
+[2026-06-26 11:23:29] Active users with GUID: users=1024, guids=1022
+[2026-06-26 11:23:39] HL->SQL ОБНОВЛЕНИЕ 28 rows: id=31747 статус=6 состояние=1923, id=25739 статус=5 состояние=1923, id=29461 статус=5 состояние=1923, id=33725 статус=5 состояние=1923, id=33922 статус=5 состояние=1923, id=34372 статус=5 состояние=1923, id=34638 статус=5 состояние=1923, id=34830 статус=5 состояние=1923, id=27245 статус=4 состояние=1922, id=28956 статус=4 состояние=1922, id=30998 статус=4 состояние=1922, id=31859 статус=4 состояние=1922, id=32030 статус=4 состояние=1922, id=33093 статус=4 состояние=1922, id=33148 статус=4 состояние=1922, id=34006 статус=4 состояние=1922, id=34789 статус=4 состояние=1922, id=34826 статус=4 состояние=1922, id=34730 статус=4 состояние=1922, id=34822 статус=4 состояние=1922, id=34837 статус=4 состояние=1922, id=34752 статус=4 состояние=1921, id=28207 статус=8 состояние=1921, id=28208 статус=8 состояние=1921, id=34753 статус=4 состояние=1921, id=34754 статус=4 состояние=1921, id=34841 статус=4 состояние=1921, id=30975 статус=8 состояние=1922
+[2026-06-26 11:23:39] HL->SQL done: 28
+[2026-06-26 11:23:39] SQL->HL resume cursor at: renew=2026-04-17 09:44:24, id='31500'
+[2026-06-26 11:23:39] SQL->HL fetch window: cursor=2026-04-17 09:44:24, id='31500'
+[2026-06-26 11:23:41] SQL->HL: no more rows after cursor
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26060_a: base vacation 26060 already cancelled (HL#26060)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33720_a: base vacation 33720 already cancelled (HL#33720)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33648_a: base vacation 33648 already cancelled (HL#33648)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33636_a: base vacation 33636 already cancelled (HL#33636)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33236_a: base vacation 33236 already cancelled (HL#33236)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33002_a: base vacation 33002 already cancelled (HL#33002)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30086_a: base vacation 30086 already cancelled (HL#30086)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29748_a: base vacation 29748 already cancelled (HL#29748)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29074_a: base vacation 29074 already cancelled (HL#29074)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29019_a: base vacation 29019 already cancelled (HL#29019)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27984_a: base vacation 27984 already cancelled (HL#27984)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=34035_a: base vacation 34035 already cancelled (HL#34035)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33925_a: base vacation 33925 already cancelled (HL#33925)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33732_a: base vacation 33732 already cancelled (HL#33732)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33386_a: base vacation 33386 already cancelled (HL#33386)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33383_a: base vacation 33383 already cancelled (HL#33383)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33349_a: base vacation 33349 already cancelled (HL#33349)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30450_a: base vacation 30450 already cancelled (HL#30450)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29773_a: base vacation 29773 already cancelled (HL#29773)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28500_a: base vacation 28500 already cancelled (HL#28500)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28244_a: base vacation 28244 already cancelled (HL#28244)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26266_a: base vacation 26266 already cancelled (HL#26266)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25769_a: base vacation 25769 already cancelled (HL#25769)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33822_a: base vacation 33822 already cancelled (HL#33822)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33242_a: base vacation 33242 already cancelled (HL#33242)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30506_a: base vacation 30506 already cancelled (HL#30506)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30270_a: base vacation 30270 already cancelled (HL#30270)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29674_a: base vacation 29674 already cancelled (HL#29674)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28307_a: base vacation 28307 already cancelled (HL#28307)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26229_a: base vacation 26229 already cancelled (HL#26229)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32561_a: base vacation 32561 already cancelled (HL#32561)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32381_a: base vacation 32381 already cancelled (HL#32381)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32176_a: base vacation 32176 already cancelled (HL#32176)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32093_a: base vacation 32093 already cancelled (HL#32093)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31322_a: base vacation 31322 already cancelled (HL#31322)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28838_a: base vacation 28838 already cancelled (HL#28838)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28689_a: base vacation 28689 already cancelled (HL#28689)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26887_a: base vacation 26887 already cancelled (HL#26887)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25998_a: base vacation 25998 already cancelled (HL#25998)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33302_a: base vacation 33302 already cancelled (HL#33302)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33227_a: base vacation 33227 already cancelled (HL#33227)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33121_a: base vacation 33121 already cancelled (HL#33121)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32945_a: base vacation 32945 already cancelled (HL#32945)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32822_a: base vacation 32822 already cancelled (HL#32822)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32792_a: base vacation 32792 already cancelled (HL#32792)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32073_a: base vacation 32073 already cancelled (HL#32073)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31635_a: base vacation 31635 already cancelled (HL#31635)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31303_a: base vacation 31303 already cancelled (HL#31303)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29820_a: base vacation 29820 already cancelled (HL#29820)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29565_a: base vacation 29565 already cancelled (HL#29565)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29173_a: base vacation 29173 already cancelled (HL#29173)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28996_a: base vacation 28996 already cancelled (HL#28996)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28779_a: base vacation 28779 already cancelled (HL#28779)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28325_a: base vacation 28325 already cancelled (HL#28325)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26968_a: base vacation 26968 already cancelled (HL#26968)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26450_a: base vacation 26450 already cancelled (HL#26450)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26410_a: base vacation 26410 already cancelled (HL#26410)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25828_a: base vacation 25828 already cancelled (HL#25828)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25583_a: base vacation 25583 already cancelled (HL#25583)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33385_a: base vacation 33385 already cancelled (HL#33385)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33234_a: base vacation 33234 already cancelled (HL#33234)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33178_a: base vacation 33178 already cancelled (HL#33178)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33086_a: base vacation 33086 already cancelled (HL#33086)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33085_a: base vacation 33085 already cancelled (HL#33085)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33003_a: base vacation 33003 already cancelled (HL#33003)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32918_a: base vacation 32918 already cancelled (HL#32918)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32758_a: base vacation 32758 already cancelled (HL#32758)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32739_a: base vacation 32739 already cancelled (HL#32739)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32696_a: base vacation 32696 already cancelled (HL#32696)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32308_a: base vacation 32308 already cancelled (HL#32308)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32074_a: base vacation 32074 already cancelled (HL#32074)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32034_a: base vacation 32034 already cancelled (HL#32034)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30438_a: base vacation 30438 already cancelled (HL#30438)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29907_a: base vacation 29907 already cancelled (HL#29907)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29691_a: base vacation 29691 already cancelled (HL#29691)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29104_a: base vacation 29104 already cancelled (HL#29104)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27021_a: base vacation 27021 already cancelled (HL#27021)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26390_a: base vacation 26390 already cancelled (HL#26390)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25735_a: base vacation 25735 already cancelled (HL#25735)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25625_a: base vacation 25625 already cancelled (HL#25625)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33389_a: base vacation 33389 already cancelled (HL#33389)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33275_a: base vacation 33275 already cancelled (HL#33275)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33110_a: base vacation 33110 already cancelled (HL#33110)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32905_a: base vacation 32905 already cancelled (HL#32905)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32883_a: base vacation 32883 already cancelled (HL#32883)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32816_a: base vacation 32816 already cancelled (HL#32816)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32814_a: base vacation 32814 already cancelled (HL#32814)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32560_a: base vacation 32560 already cancelled (HL#32560)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31947_a: base vacation 31947 already cancelled (HL#31947)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31804_a: base vacation 31804 already cancelled (HL#31804)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31104_a: base vacation 31104 already cancelled (HL#31104)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30627_a: base vacation 30627 already cancelled (HL#30627)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30274_a: base vacation 30274 already cancelled (HL#30274)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29501_a: base vacation 29501 already cancelled (HL#29501)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27471_a: base vacation 27471 already cancelled (HL#27471)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26135_a: base vacation 26135 already cancelled (HL#26135)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33059_a: base vacation 33059 already cancelled (HL#33059)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32992_a: base vacation 32992 already cancelled (HL#32992)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32986_a: base vacation 32986 already cancelled (HL#32986)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32803_a: base vacation 32803 already cancelled (HL#32803)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32780_a: base vacation 32780 already cancelled (HL#32780)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32566_a: base vacation 32566 already cancelled (HL#32566)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32466_a: base vacation 32466 already cancelled (HL#32466)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32275_a: base vacation 32275 already cancelled (HL#32275)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31976_a: base vacation 31976 already cancelled (HL#31976)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31341_a: base vacation 31341 already cancelled (HL#31341)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30404_a: base vacation 30404 already cancelled (HL#30404)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29623_a: base vacation 29623 already cancelled (HL#29623)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28206_a: base vacation 28206 already cancelled (HL#28206)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27452_a: base vacation 27452 already cancelled (HL#27452)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=25700_a: base vacation 25700 already cancelled (HL#25700)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32886_a: base vacation 32886 already cancelled (HL#32886)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32885_a: base vacation 32885 already cancelled (HL#32885)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32765_a: base vacation 32765 already cancelled (HL#32765)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32570_a: base vacation 32570 already cancelled (HL#32570)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32510_a: base vacation 32510 already cancelled (HL#32510)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=31120_a: base vacation 31120 already cancelled (HL#31120)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=30095_a: base vacation 30095 already cancelled (HL#30095)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29386_a: base vacation 29386 already cancelled (HL#29386)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27467_a: base vacation 27467 already cancelled (HL#27467)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27156_a: base vacation 27156 already cancelled (HL#27156)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=27128_a: base vacation 27128 already cancelled (HL#27128)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26957_a: base vacation 26957 already cancelled (HL#26957)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26904_a: base vacation 26904 already cancelled (HL#26904)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26401_a: base vacation 26401 already cancelled (HL#26401)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=26347_a: base vacation 26347 already cancelled (HL#26347)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=33030_a: base vacation 33030 already cancelled (HL#33030)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32557_a: base vacation 32557 already cancelled (HL#32557)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=32555_a: base vacation 32555 already cancelled (HL#32555)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29393_a: base vacation 29393 already cancelled (HL#29393)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=29341_a: base vacation 29341 already cancelled (HL#29341)
+[2026-06-26 11:23:41] SQL->HL ДОП prefix=28696_a: base vacation 28696 already cancelled (HL#28696)
+[2026-06-26 11:24:24] Time budget reached during vacation balance rewrite
+[2026-06-26 11:24:24] === Test sync done: HL->SQL=28, SQL->HL=0, RecalcRewrite=211, elapsed=55.055s ===
