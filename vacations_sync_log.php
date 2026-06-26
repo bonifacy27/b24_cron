@@ -149,7 +149,7 @@ function calcBxDateEnd(Date $begin, int $days): Date {
     return new Date($php->format('Y-m-d'), 'Y-m-d');
 }
 /** Set base vacation status to cancelled when a derived SQL absence references it */
-function cancelBasisVacation(string $dataClass, string $basisId, string $prefixId): bool {
+function cancelBasisVacation(string $dataClass, string $basisId, string $prefixId, bool $logAlreadyCancelled = true): bool {
     $basisId = trim($basisId);
     if ($basisId === '') {
         return false;
@@ -167,7 +167,9 @@ function cancelBasisVacation(string $dataClass, string $basisId, string $prefixI
     }
     $hlId = (int)$basis['ID'];
     if ((int)$basis['UF_STATE'] === 8) {
-        logx("SQL->HL ДОП prefix={$prefixId}: base vacation {$basisId} already cancelled (HL#{$hlId})");
+        if ($logAlreadyCancelled) {
+            logx("SQL->HL ДОП prefix={$prefixId}: base vacation {$basisId} already cancelled (HL#{$hlId})");
+        }
         return true;
     }
     $upd = $dataClass::update($hlId, ['UF_STATE' => 8]);
@@ -718,7 +720,7 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
             $basisId = trim((string)($row['AbsenceBases_ID'] ?? ''));
             if (isset($existingPrefixes[$prefixId])) {
                 if ($basisId !== '') {
-                    cancelBasisVacation($dataClass, $basisId, $prefixId);
+                    cancelBasisVacation($dataClass, $basisId, $prefixId, false);
                 }
                 continue;
             }
