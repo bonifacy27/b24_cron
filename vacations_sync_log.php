@@ -42,7 +42,6 @@ const ALLOWED_STATES           = [4,5,6,7,8];
 const BASE_ABSENCE_ID_REGEX    = '/^\d+$/';
 const DERIVED_VACATION_TYPE_ID = 3018104;
 const ADMIN_USER_ID = 1;
-const RECALC_REWRITE_CHUNK_SIZE = 200;
 $startedAt = microtime(true);
 // ---------- logging ----------
 function logx(string $msg): void {
@@ -212,12 +211,13 @@ function extractHlUpdateFields(array $row): array {
     }
     return $fields;
 }
-/** Rewrite all current-year vacations for employees touched by SQL->HL to trigger vacation module recalculation handlers. */
+/** Rewrite one current-year vacation per employee touched by SQL->HL to trigger vacation module recalculation handlers. */
 function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $employeeIds, float $startedAt): int {
     $employeeIds = array_values(array_unique(array_map('intval', array_keys($employeeIds))));
     if (!$employeeIds) {
         return 0;
     }
+    $pendingEmployeeIds = array_fill_keys($employeeIds, true);
     ensureAdminUserAuthorized();
     $yearStart = new Date(date('Y').'-01-01', 'Y-m-d');
     $yearEnd = new Date(date('Y').'-12-31', 'Y-m-d');
@@ -236,47 +236,32 @@ function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $emplo
             ],
             'order' => ['UF_EMPLOYEE' => 'ASC', 'UF_DATE_BEGIN' => 'ASC', 'ID' => 'ASC'],
         ]);
-        $rows = [];
         while ($row = $res->fetch()) {
-            $rows[] = $row;
-            if (count($rows) >= RECALC_REWRITE_CHUNK_SIZE) {
-                foreach ($rows as $vacation) {
-                    if (microtime(true) - $startedAt > TIME_BUDGET_SEC) {
-                        logx("Time budget reached during vacation balance rewrite");
-                        return $rewritten;
-                    }
-                    $fields = extractHlUpdateFields($vacation);
-                    if (!$fields) {
-                        continue;
-                    }
-                    $upd = $dataClass::update((int)$vacation['ID'], $fields);
-                    if ($upd->isSuccess()) {
-                        $rewritten++;
-                    } else {
-                        logx("WARN vacation rewrite HL#".(int)$vacation['ID'].": ".implode('; ', $upd->getErrorMessages()));
-                    }
-                }
-                $rows = [];
+            $empId = (int)($row['UF_EMPLOYEE'] ?? 0);
+            if ($empId <= 0 || !isset($pendingEmployeeIds[$empId])) {
+                continue;
             }
-        }
-        foreach ($rows as $vacation) {
             if (microtime(true) - $startedAt > TIME_BUDGET_SEC) {
                 logx("Time budget reached during vacation balance rewrite");
                 return $rewritten;
             }
-            $fields = extractHlUpdateFields($vacation);
+            $fields = extractHlUpdateFields($row);
             if (!$fields) {
                 continue;
             }
-            $upd = $dataClass::update((int)$vacation['ID'], $fields);
+            $upd = $dataClass::update((int)$row['ID'], $fields);
             if ($upd->isSuccess()) {
                 $rewritten++;
+                unset($pendingEmployeeIds[$empId]);
             } else {
-                logx("WARN vacation rewrite HL#".(int)$vacation['ID'].": ".implode('; ', $upd->getErrorMessages()));
+                logx("WARN vacation rewrite HL#".(int)$row['ID'].": ".implode('; ', $upd->getErrorMessages()));
+            }
+            if (!$pendingEmployeeIds) {
+                break 2;
             }
         }
     }
-    logx("Vacation balance rewrite done: employees=".count($employeeIds).", vacations={$rewritten}");
+    logx("Vacation balance rewrite done: employees=".count($employeeIds).", vacations={$rewritten}, missing_employees=".count($pendingEmployeeIds));
     return $rewritten;
 }
 
