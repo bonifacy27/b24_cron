@@ -43,6 +43,7 @@ const BASE_ABSENCE_ID_REGEX    = '/^\d+$/';
 const DERIVED_VACATION_TYPE_ID = 3018104;
 const ADMIN_USER_ID = 1;
 const RECALC_REWRITE_CHUNK_SIZE = 200;
+const FACT_VACATION_STATE = 5;
 $startedAt = microtime(true);
 // ---------- logging ----------
 function logx(string $msg): void {
@@ -157,7 +158,7 @@ function cancelBasisVacation(string $dataClass, string $basisId, string $prefixI
     }
     $filter = isBaseAbsenceId($basisId) ? ['ID' => (int)$basisId] : ['UF_ID_PREFIX' => $basisId];
     $res = $dataClass::getList([
-        'select' => ['ID','UF_STATE'],
+        'select' => ['ID','UF_STATE','UF_EMPLOYEE'],
         'filter' => $filter,
         'limit'  => 1,
     ]);
@@ -198,21 +199,15 @@ function queueVacationBalanceRecalc(array &$employeeIds, int $employeeId): void 
         $employeeIds[$employeeId] = true;
     }
 }
-/** Return only user fields that can be safely passed back to HL update. */
-function extractHlUpdateFields(array $row): array {
-    $fields = [];
-    foreach ($row as $field => $value) {
-        if (strpos((string)$field, 'UF_') !== 0) {
-            continue;
-        }
-        if (in_array($field, ['UF_CHANGED_AT', 'UF_CREATED_AT'], true)) {
-            continue;
-        }
-        $fields[$field] = $value;
-    }
-    return $fields;
+/** Return the minimal fields used by manual rewrite_current_year_vacations.php to trigger recalculation handlers. */
+function extractVacationBalanceRewriteFields(array $row): array {
+    return [
+        'UF_EMPLOYEE' => $row['UF_EMPLOYEE'],
+        'UF_DATE_BEGIN' => $row['UF_DATE_BEGIN'],
+        'UF_DATE_END' => $row['UF_DATE_END'],
+    ];
 }
-/** Rewrite all current-year vacations for employees touched by SQL->HL to trigger vacation module recalculation handlers. */
+/** Rewrite all current-year vacations for employees touched by sync to trigger vacation module recalculation handlers. */
 function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $employeeIds, float $startedAt): int {
     $employeeIds = array_values(array_unique(array_map('intval', array_keys($employeeIds))));
     if (!$employeeIds) {
@@ -245,7 +240,7 @@ function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $emplo
                         logx("Time budget reached during vacation balance rewrite");
                         return $rewritten;
                     }
-                    $fields = extractHlUpdateFields($vacation);
+                    $fields = extractVacationBalanceRewriteFields($vacation);
                     if (!$fields) {
                         continue;
                     }
@@ -264,7 +259,7 @@ function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $emplo
                 logx("Time budget reached during vacation balance rewrite");
                 return $rewritten;
             }
-            $fields = extractHlUpdateFields($vacation);
+            $fields = extractVacationBalanceRewriteFields($vacation);
             if (!$fields) {
                 continue;
             }
@@ -333,6 +328,8 @@ if (!$activeUserIds || !$activeGuidList) {
     echo "OK v1.7.0-derived-sync; no active users\n";
     return;
 }
+// Employees whose current-year vacations must be rewritten to trigger balance recalculation.
+$employeesForVacationBalanceRecalc = [];
 // ---------- HL -> SQL ----------
 $hl2sqlCount = 0;
 $selectHL = [
@@ -440,13 +437,17 @@ WHEN NOT MATCHED THEN
   VALUES (S.Absence_ID,S.Staff_ID,S.Absence_Name,S.Absence_Status,S.Src_Changed_At,S.Absence_Date_Start,S.Absence_Day_Count,S.Absence_State,N'ourtricolortv.nsc.ru');";
         logx("HL->SQL ОБНОВЛЕНИЕ ".count($batch)." rows: ".implode(", ", $logBatch));
         $gateConn->queryExecute($sql);
+        foreach ($batch as $b) {
+            if ((int)$b['UF_STATE'] === FACT_VACATION_STATE) {
+                queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, (int)$b['UF_EMPLOYEE']);
+            }
+        }
         $hl2sqlCount += count($batch);
     }
 }
 logx("HL->SQL done: {$hl2sqlCount}");
 // ---------- SQL -> HL ----------
 $sql2hlCount = 0;
-$employeesForVacationBalanceRecalc = [];
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
 $guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
