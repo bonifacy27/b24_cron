@@ -192,6 +192,33 @@ function ensureAdminUserAuthorized(): void {
     }
     $USER->Authorize(ADMIN_USER_ID);
 }
+/**
+ * Repeat the fields written by the vacation edit form.
+ *
+ * The vacation module recalculates HL balances from its edit handler. A status-only
+ * ORM update is saved correctly, but does not enter that handler's recalculation
+ * branch. Rewriting the form fields immediately after UF_STATE changes has the
+ * same effect as opening the vacation in the administration UI and saving it.
+ */
+function triggerVacationBalanceRecalc(string $dataClass, int $vacationId, array $vacation): bool {
+    $fields = [];
+    foreach (['UF_EMPLOYEE', 'UF_DATE_BEGIN', 'UF_DATE_END', 'UF_VACATION_DAYS'] as $field) {
+        if (array_key_exists($field, $vacation)) {
+            $fields[$field] = $vacation[$field];
+        }
+    }
+    if (!$fields) {
+        logx("WARN vacation balance recalc HL#{$vacationId}: no form fields loaded");
+        return false;
+    }
+    $result = $dataClass::update($vacationId, $fields);
+    if (!$result->isSuccess()) {
+        logx("WARN vacation balance recalc HL#{$vacationId}: ".implode('; ', $result->getErrorMessages()));
+        return false;
+    }
+    logx("Vacation balance recalc triggered for HL#{$vacationId}");
+    return true;
+}
 /** Queue employee for current-year vacation rewrite after SQL->HL creates or updates vacation rows. */
 function queueVacationBalanceRecalc(array &$employeeIds, int $employeeId): void {
     if ($employeeId > 0) {
@@ -447,6 +474,9 @@ logx("HL->SQL done: {$hl2sqlCount}");
 // ---------- SQL -> HL ----------
 $sql2hlCount = 0;
 $employeesForVacationBalanceRecalc = [];
+// The vacation module's event handlers expect the same authorized context as an
+// administrator save. Authorization must happen before, not after, SQL updates.
+ensureAdminUserAuthorized();
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
 $guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
@@ -499,7 +529,10 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
             $filter['>=UF_DATE_BEGIN'] = $cutoffBxDate;
         }
         $res = $dataClass::getList([
-            'select' => ['ID','UF_CHANGED_AT','UF_EMPLOYEE','UF_STATE','UF_DATE_BEGIN'],
+            'select' => [
+                'ID','UF_CHANGED_AT','UF_EMPLOYEE','UF_STATE','UF_DATE_BEGIN',
+                'UF_DATE_END','UF_VACATION_DAYS',
+            ],
             'filter' => $filter,
         ]);
         while ($x = $res->fetch()) { $hlMap[(int)$x['ID']] = $x; }
@@ -654,7 +687,11 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
                 logx(sprintf("SQL->HL ОБНОВЛЕНИЕ id=%s статус=%s состояние=%s", (string)$id, (string)$upd['UF_STATE'], (string)$upd['UF_VACATION_STATE']));
                 $r = $dataClass::update($id, $upd);
                 if ($r->isSuccess()) {
-                    queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, $empId);
+                    // Do this while the row is still in the cursor window. A deferred
+                    // rewrite can be skipped by TIME_BUDGET_SEC and then is not retried.
+                    if (!triggerVacationBalanceRecalc($dataClass, $id, $hlMap[$id])) {
+                        queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, $empId);
+                    }
                     // читаем реальный UF_CHANGED_AT после триггера
                     $res2 = $dataClass::getList([
                         'select' => ['UF_CHANGED_AT'],
