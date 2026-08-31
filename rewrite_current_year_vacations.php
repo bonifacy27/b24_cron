@@ -1,7 +1,7 @@
 <?php
 /**
  * rewrite_current_year_vacations.php
- * v1.4
+ * v1.5
  *
  * Перезаписывает один отпуск в HL 83 за текущий год
  * только для сотрудников, у которых:
@@ -21,12 +21,20 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Type\Date;
 use Bitrix\Highloadblock\HighloadBlockTable;
 
+$isCli = PHP_SAPI === 'cli';
+
+if ($isCli) {
+    define('NO_KEEP_STATISTIC', true);
+    define('NOT_CHECK_PERMISSIONS', true);
+    define('BX_CRONTAB', true);
+}
+
 $_SERVER['DOCUMENT_ROOT'] = '/home/bitrix/www';
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
 
 global $USER;
 
-if (PHP_SAPI !== 'cli' && (!$USER || !$USER->IsAdmin())) {
+if (!$isCli && (!$USER || !$USER->IsAdmin())) {
     die('Access denied');
 }
 
@@ -36,7 +44,7 @@ const HL_BALANCES_ID  = 84;
 const HL_VACATIONS_ID = 83;
 
 $year = (int)date('Y');
-$apply = PHP_SAPI === 'cli'
+$apply = $isCli
     ? in_array('--apply', $argv ?? [], true)
     : ($_GET['apply'] ?? '') === 'Y';
 
@@ -215,7 +223,7 @@ try {
 
     ?>
     <pre>
-rewrite_current_year_vacations.php v1.4
+rewrite_current_year_vacations.php v1.5
 
 Режим: <?= $apply ? 'APPLY' : 'DRY-RUN' ?>
 
