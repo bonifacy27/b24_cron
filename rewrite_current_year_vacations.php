@@ -1,7 +1,7 @@
 <?php
 /**
  * rewrite_current_year_vacations.php
- * v1.3
+ * v1.4
  *
  * Перезаписывает один отпуск в HL 83 за текущий год
  * только для сотрудников, у которых:
@@ -13,7 +13,8 @@
  *
  * Apply:
  * /local/tools/rewrite_current_year_vacations.php?apply=Y
- * php /local/tools/rewrite_current_year_vacations.php --apply
+ * Для PHP CLI после имени файла нужен разделитель "--":
+ * php -f /home/bitrix/www/local/cron/rewrite_current_year_vacations.php -- --apply
  */
 
 use Bitrix\Main\Loader;
@@ -35,9 +36,8 @@ const HL_BALANCES_ID  = 84;
 const HL_VACATIONS_ID = 83;
 
 $year = (int)date('Y');
-$cliOptions = PHP_SAPI === 'cli' ? getopt('', ['apply']) : [];
 $apply = PHP_SAPI === 'cli'
-    ? isset($cliOptions['apply'])
+    ? in_array('--apply', $argv ?? [], true)
     : ($_GET['apply'] ?? '') === 'Y';
 
 $yearStart = Date::createFromPhp(new DateTime($year . '-01-01'));
@@ -215,7 +215,7 @@ try {
 
     ?>
     <pre>
-rewrite_current_year_vacations.php v1.3
+rewrite_current_year_vacations.php v1.4
 
 Режим: <?= $apply ? 'APPLY' : 'DRY-RUN' ?>
 
