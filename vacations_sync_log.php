@@ -318,6 +318,16 @@ function syncSqlRenewDate(\Bitrix\Main\DB\Connection $gateConn, $sqlHelper, stri
 $dataClass = compileHLDataClass(HLBLOCK_ID);
 $gateConn  = Application::getConnection(GATE_CONN_NAME);
 $sqlHelper = $gateConn->getSqlHelper();
+// Mark this SQL session so the database audit trigger can distinguish portal
+// writes from 1C ZUP and manual SQL changes. The marker lives only for the
+// lifetime of this connection and does not change application data.
+try {
+    $gateConn->queryExecute("EXEC sys.sp_set_session_context @key=N'vacation_writer', @value=N'vacations_sync_log.php'");
+} catch (\Throwable $e) {
+    // SQL Server versions before 2016 do not support SESSION_CONTEXT. The audit
+    // still records login, host and application name, so synchronization can run.
+    logx("WARN: can't set SQL audit session marker: ".$e->getMessage());
+}
 // cutoff (6 months)
 $cutoffYmd = '';
 $cutoffBxDate = null;
@@ -827,4 +837,3 @@ saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
 logx("=== Test sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
 echo "OK v1.7.0-derived-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
-
