@@ -1,9 +1,9 @@
 <?php
 /**
  * rewrite_current_year_vacations.php
- * v1.1
+ * v1.5
  *
- * Перезаписывает отпуска в HL 83 за текущий год
+ * Перезаписывает один отпуск в HL 83 за текущий год
  * только для сотрудников, у которых:
  * 1. В HL 84 есть остатки: UF_YEAR = текущий год и UF_ISSUED > 0
  * 2. В HL 83 за этот год НЕТ отпусков со статусом UF_STATE = 5
@@ -13,17 +13,28 @@
  *
  * Apply:
  * /local/tools/rewrite_current_year_vacations.php?apply=Y
+ * Для PHP CLI после имени файла нужен разделитель "--":
+ * php -f /home/bitrix/www/local/cron/rewrite_current_year_vacations.php -- --apply
  */
 
 use Bitrix\Main\Loader;
 use Bitrix\Main\Type\Date;
 use Bitrix\Highloadblock\HighloadBlockTable;
 
-require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
+$isCli = PHP_SAPI === 'cli';
+
+if ($isCli) {
+    define('NO_KEEP_STATISTIC', true);
+    define('NOT_CHECK_PERMISSIONS', true);
+    define('BX_CRONTAB', true);
+}
+
+$_SERVER['DOCUMENT_ROOT'] = '/home/bitrix/www';
+require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_before.php');
 
 global $USER;
 
-if (!$USER || !$USER->IsAdmin()) {
+if (!$isCli && (!$USER || !$USER->IsAdmin())) {
     die('Access denied');
 }
 
@@ -32,8 +43,10 @@ Loader::includeModule('highloadblock');
 const HL_BALANCES_ID  = 84;
 const HL_VACATIONS_ID = 83;
 
-$year = 2026;
-$apply = ($_GET['apply'] ?? '') === 'Y';
+$year = (int)date('Y');
+$apply = $isCli
+    ? in_array('--apply', $argv ?? [], true)
+    : ($_GET['apply'] ?? '') === 'Y';
 
 $yearStart = Date::createFromPhp(new DateTime($year . '-01-01'));
 $yearEnd   = Date::createFromPhp(new DateTime($year . '-12-31'));
@@ -65,7 +78,7 @@ try {
 
     /**
      * 1. Получаем сотрудников из HL 84:
-     * UF_YEAR = 2026 и UF_ISSUED > 0
+     * UF_YEAR = текущий год и UF_ISSUED > 0
      */
     $employeeIds = [];
 
@@ -114,7 +127,7 @@ try {
                     '=UF_STATE' => 5,
 
                     // Отпуск относится к году, если пересекает период года:
-                    // начало <= 31.12.2026 и конец >= 01.01.2026
+                    // начало <= конец текущего года и конец >= начало текущего года
                     '<=UF_DATE_BEGIN' => $yearEnd,
                     '>=UF_DATE_END' => $yearStart,
                 ],
@@ -141,7 +154,8 @@ try {
     $employeeIdsToRewrite = array_diff_key($employeeIds, $employeesWithState5);
 
     /**
-     * 4. По оставшимся сотрудникам ищем отпуска за год и перезаписываем
+     * 4. По каждому оставшемуся сотруднику перезаписываем один отпуск за год.
+     * Этого достаточно, чтобы модуль отпусков обновил остатки сотрудника.
      */
     $totalFound = 0;
     $totalUpdated = 0;
@@ -160,7 +174,7 @@ try {
                 '=UF_EMPLOYEE' => $employeeId,
 
                 // Отпуск относится к году, если пересекает период года:
-                // начало <= 31.12.2026 и конец >= 01.01.2026
+                // начало <= конец текущего года и конец >= начало текущего года
                 '<=UF_DATE_BEGIN' => $yearEnd,
                 '>=UF_DATE_END' => $yearStart,
             ],
@@ -169,6 +183,7 @@ try {
                 'UF_DATE_BEGIN' => 'ASC',
                 'ID' => 'ASC',
             ],
+            'limit' => 1,
         ]);
 
         while ($vacation = $rsVacations->fetch()) {
@@ -208,7 +223,7 @@ try {
 
     ?>
     <pre>
-rewrite_current_year_vacations.php v1.1
+rewrite_current_year_vacations.php v1.5
 
 Режим: <?= $apply ? 'APPLY' : 'DRY-RUN' ?>
 
@@ -225,7 +240,7 @@ HL отпусков: <?= HL_VACATIONS_ID ?>
 
 Сотрудников к перезаписи: <?= count($employeeIdsToRewrite) ?>
 
-Найдено отпусков к перезаписи: <?= $totalFound ?>
+Выбрано отпусков к перезаписи (не более одного на сотрудника): <?= $totalFound ?>
 
 Перезаписано: <?= $totalUpdated ?>
 
