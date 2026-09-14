@@ -193,7 +193,7 @@ function ensureAdminUserAuthorized(): void {
     }
     $USER->Authorize(ADMIN_USER_ID);
 }
-/** Queue employee for current-year vacation rewrite after SQL->HL creates or updates vacation rows. */
+/** Queue employee for current-year vacation rewrite after SQL->HL or HL->SQL updates vacation rows. */
 function queueVacationBalanceRecalc(array &$employeeIds, int $employeeId): void {
     if ($employeeId > 0) {
         $employeeIds[$employeeId] = true;
@@ -320,6 +320,8 @@ if (!$activeUserIds || !$activeGuidList) {
     echo "OK v1.7.0-derived-sync; no active users\n";
     return;
 }
+// Employees whose current-year vacations must be rewritten to trigger balance recalculation.
+$employeesForVacationBalanceRecalc = [];
 // ---------- HL -> SQL ----------
 $hl2sqlCount = 0;
 $selectHL = [
@@ -362,6 +364,7 @@ foreach (array_chunk($activeUserIds, HL_EMP_CHUNK_SIZE) as $ci => $uidChunk) {
             'UF_VACATION_STATE' => (int)($r['UF_VACATION_STATE'] ?? 0),
             'UF_DATE_BEGIN'     => $dateBegin,
             'UF_VAC_DAYS'       => (int)$r['UF_VACATION_DAYS'],
+            'UF_EMPLOYEE'       => $empId,
             'NAME'              => buildAbsenceName($r),
         ];
     }
@@ -427,13 +430,15 @@ WHEN NOT MATCHED THEN
   VALUES (S.Absence_ID,S.Staff_ID,S.Absence_Name,S.Absence_Status,S.Src_Changed_At,S.Absence_Date_Start,S.Absence_Day_Count,S.Absence_State,N'ourtricolortv.nsc.ru');";
         logx("HL->SQL ОБНОВЛЕНИЕ ".count($batch)." rows: ".implode(", ", $logBatch));
         $gateConn->queryExecute($sql);
+        foreach ($batch as $b) {
+            queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, (int)($b['UF_EMPLOYEE'] ?? 0));
+        }
         $hl2sqlCount += count($batch);
     }
 }
 logx("HL->SQL done: {$hl2sqlCount}");
 // ---------- SQL -> HL ----------
 $sql2hlCount = 0;
-$employeesForVacationBalanceRecalc = [];
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
 $guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
@@ -771,7 +776,7 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
         }
     }
 }
-$rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $employeesForVacationBalanceRecalc, $startedAt);
+$rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $gateConn, $sqlHelper, $employeesForVacationBalanceRecalc, $startedAt);
 // save cursor & finish
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
