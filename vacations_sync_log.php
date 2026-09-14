@@ -192,7 +192,34 @@ function ensureAdminUserAuthorized(): void {
     }
     $USER->Authorize(ADMIN_USER_ID);
 }
-/** Queue employee for current-year vacation rewrite after SQL->HL or HL->SQL updates vacation rows. */
+/**
+ * Repeat the fields written by the vacation edit form.
+ *
+ * The vacation module recalculates HL balances from its edit handler. A status-only
+ * ORM update is saved correctly, but does not enter that handler's recalculation
+ * branch. Rewriting the form fields immediately after UF_STATE changes has the
+ * same effect as opening the vacation in the administration UI and saving it.
+ */
+function triggerVacationBalanceRecalc(string $dataClass, int $vacationId, array $vacation): bool {
+    $fields = [];
+    foreach (['UF_EMPLOYEE', 'UF_DATE_BEGIN', 'UF_DATE_END', 'UF_VACATION_DAYS'] as $field) {
+        if (array_key_exists($field, $vacation)) {
+            $fields[$field] = $vacation[$field];
+        }
+    }
+    if (!$fields) {
+        logx("WARN vacation balance recalc HL#{$vacationId}: no form fields loaded");
+        return false;
+    }
+    $result = $dataClass::update($vacationId, $fields);
+    if (!$result->isSuccess()) {
+        logx("WARN vacation balance recalc HL#{$vacationId}: ".implode('; ', $result->getErrorMessages()));
+        return false;
+    }
+    logx("Vacation balance recalc triggered for HL#{$vacationId}");
+    return true;
+}
+/** Queue employee for current-year vacation rewrite after SQL->HL creates or updates vacation rows. */
 function queueVacationBalanceRecalc(array &$employeeIds, int $employeeId): void {
     if ($employeeId > 0) {
         $employeeIds[$employeeId] = true;
@@ -212,41 +239,8 @@ function extractHlUpdateFields(array $row): array {
     }
     return $fields;
 }
-/** Rewrite one vacation row and align SQL renew date to prevent repeated HL->SQL rewrites. */
-function rewriteVacationForBalance(string $dataClass, \Bitrix\Main\DB\Connection $gateConn, $sqlHelper, array $vacation): bool {
-    $fields = extractHlUpdateFields($vacation);
-    if (!$fields) {
-        return false;
-    }
-    $hlId = (int)$vacation['ID'];
-    $upd = $dataClass::update($hlId, $fields);
-    if (!$upd->isSuccess()) {
-        logx("WARN vacation rewrite HL#".$hlId.": ".implode('; ', $upd->getErrorMessages()));
-        return false;
-    }
-    $res = $dataClass::getList([
-        'select' => ['UF_CHANGED_AT'],
-        'filter' => ['ID' => $hlId],
-        'limit'  => 1,
-    ]);
-    $real = $res->fetch();
-    if ($real && $real['UF_CHANGED_AT']) {
-        $realTime = $real['UF_CHANGED_AT'] instanceof DateTime
-            ? $real['UF_CHANGED_AT']->format('Y-m-d H:i:s')
-            : date('Y-m-d H:i:s', strtotime((string)$real['UF_CHANGED_AT']));
-        try {
-            syncSqlRenewDate($gateConn, $sqlHelper, (string)$hlId, $realTime);
-        } catch (\Throwable $e) {
-            logx("WARN vacation rewrite HL#{$hlId}: can't update Absence_Renew_Date: ".$e->getMessage());
-        }
-    } else {
-        logx("WARN vacation rewrite HL#{$hlId}: UF_CHANGED_AT not read back after trigger");
-    }
-    return true;
-}
-
-/** Rewrite all current-year vacations for employees touched by SQL->HL or HL->SQL to trigger vacation module recalculation handlers. */
-function rewriteCurrentYearVacationsForEmployees(string $dataClass, \Bitrix\Main\DB\Connection $gateConn, $sqlHelper, array $employeeIds, float $startedAt): int {
+/** Rewrite all current-year vacations for employees touched by SQL->HL to trigger vacation module recalculation handlers. */
+function rewriteCurrentYearVacationsForEmployees(string $dataClass, array $employeeIds, float $startedAt): int {
     $employeeIds = array_values(array_unique(array_map('intval', array_keys($employeeIds))));
     if (!$employeeIds) {
         return 0;
@@ -278,8 +272,15 @@ function rewriteCurrentYearVacationsForEmployees(string $dataClass, \Bitrix\Main
                         logx("Time budget reached during vacation balance rewrite");
                         return $rewritten;
                     }
-                    if (rewriteVacationForBalance($dataClass, $gateConn, $sqlHelper, $vacation)) {
+                    $fields = extractHlUpdateFields($vacation);
+                    if (!$fields) {
+                        continue;
+                    }
+                    $upd = $dataClass::update((int)$vacation['ID'], $fields);
+                    if ($upd->isSuccess()) {
                         $rewritten++;
+                    } else {
+                        logx("WARN vacation rewrite HL#".(int)$vacation['ID'].": ".implode('; ', $upd->getErrorMessages()));
                     }
                 }
                 $rows = [];
@@ -290,8 +291,15 @@ function rewriteCurrentYearVacationsForEmployees(string $dataClass, \Bitrix\Main
                 logx("Time budget reached during vacation balance rewrite");
                 return $rewritten;
             }
-            if (rewriteVacationForBalance($dataClass, $gateConn, $sqlHelper, $vacation)) {
+            $fields = extractHlUpdateFields($vacation);
+            if (!$fields) {
+                continue;
+            }
+            $upd = $dataClass::update((int)$vacation['ID'], $fields);
+            if ($upd->isSuccess()) {
                 $rewritten++;
+            } else {
+                logx("WARN vacation rewrite HL#".(int)$vacation['ID'].": ".implode('; ', $upd->getErrorMessages()));
             }
         }
     }
@@ -352,8 +360,6 @@ if (!$activeUserIds || !$activeGuidList) {
     echo "OK v1.7.0-derived-sync; no active users\n";
     return;
 }
-// Employees whose current-year vacations must be rewritten to trigger balance recalculation.
-$employeesForVacationBalanceRecalc = [];
 // ---------- HL -> SQL ----------
 $hl2sqlCount = 0;
 $selectHL = [
@@ -396,7 +402,6 @@ foreach (array_chunk($activeUserIds, HL_EMP_CHUNK_SIZE) as $ci => $uidChunk) {
             'UF_VACATION_STATE' => (int)($r['UF_VACATION_STATE'] ?? 0),
             'UF_DATE_BEGIN'     => $dateBegin,
             'UF_VAC_DAYS'       => (int)$r['UF_VACATION_DAYS'],
-            'UF_EMPLOYEE'       => $empId,
             'NAME'              => buildAbsenceName($r),
         ];
     }
@@ -462,15 +467,16 @@ WHEN NOT MATCHED THEN
   VALUES (S.Absence_ID,S.Staff_ID,S.Absence_Name,S.Absence_Status,S.Src_Changed_At,S.Absence_Date_Start,S.Absence_Day_Count,S.Absence_State,N'ourtricolortv.nsc.ru');";
         logx("HL->SQL ОБНОВЛЕНИЕ ".count($batch)." rows: ".implode(", ", $logBatch));
         $gateConn->queryExecute($sql);
-        foreach ($batch as $b) {
-            queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, (int)($b['UF_EMPLOYEE'] ?? 0));
-        }
         $hl2sqlCount += count($batch);
     }
 }
 logx("HL->SQL done: {$hl2sqlCount}");
 // ---------- SQL -> HL ----------
 $sql2hlCount = 0;
+$employeesForVacationBalanceRecalc = [];
+// The vacation module's event handlers expect the same authorized context as an
+// administrator save. Authorization must happen before, not after, SQL updates.
+ensureAdminUserAuthorized();
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
 $guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
@@ -523,7 +529,10 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
             $filter['>=UF_DATE_BEGIN'] = $cutoffBxDate;
         }
         $res = $dataClass::getList([
-            'select' => ['ID','UF_CHANGED_AT','UF_EMPLOYEE','UF_STATE','UF_DATE_BEGIN'],
+            'select' => [
+                'ID','UF_CHANGED_AT','UF_EMPLOYEE','UF_STATE','UF_DATE_BEGIN',
+                'UF_DATE_END','UF_VACATION_DAYS',
+            ],
             'filter' => $filter,
         ]);
         while ($x = $res->fetch()) { $hlMap[(int)$x['ID']] = $x; }
@@ -678,7 +687,11 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
                 logx(sprintf("SQL->HL ОБНОВЛЕНИЕ id=%s статус=%s состояние=%s", (string)$id, (string)$upd['UF_STATE'], (string)$upd['UF_VACATION_STATE']));
                 $r = $dataClass::update($id, $upd);
                 if ($r->isSuccess()) {
-                    queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, $empId);
+                    // Do this while the row is still in the cursor window. A deferred
+                    // rewrite can be skipped by TIME_BUDGET_SEC and then is not retried.
+                    if (!triggerVacationBalanceRecalc($dataClass, $id, $hlMap[$id])) {
+                        queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, $empId);
+                    }
                     // читаем реальный UF_CHANGED_AT после триггера
                     $res2 = $dataClass::getList([
                         'select' => ['UF_CHANGED_AT'],
@@ -808,9 +821,10 @@ ORDER BY Absence_Renew_Date DESC, Absence_ID DESC";
         }
     }
 }
-$rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $gateConn, $sqlHelper, $employeesForVacationBalanceRecalc, $startedAt);
+$rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $employeesForVacationBalanceRecalc, $startedAt);
 // save cursor & finish
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
 logx("=== Test sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
 echo "OK v1.7.0-derived-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
+
