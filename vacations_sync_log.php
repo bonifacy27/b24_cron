@@ -2,7 +2,7 @@
 /**
  * Vacations <-> GateDB_Test sync
  * Only ACTIVE users; 6-month window; only statuses [4,5,6,7,8]; diffed; batch MERGE; resume cursor
- * Version: v1.7.1-base-id-sync (2026-09-18)
+ * Version: v1.7.2-direct-base-sync (2026-09-18)
  *
  * Исправления:
  *  - HL → SQL: UF_VACATION_STATE → Absence_State
@@ -344,7 +344,7 @@ try {
         $cutoffBxDate = new Date($cutoffYmd, 'Y-m-d');
     }
 }
-logx("=== Test sync v1.7.1-base-id-sync start ===");
+logx("=== Test sync v1.7.2-direct-base-sync start ===");
 logx("Cutoff date (>=): ".($cutoffYmd ?: '<none>'));
 logx("Allowed UF_STATE: ".implode(',', ALLOWED_STATES));
 // Users & GUIDs
@@ -367,11 +367,16 @@ while ($u = $rsAllUsers->Fetch()) {
 logx("Active users with GUID: users=".count($activeUserIds).", guids=".count($activeGuidList));
 if (!$activeUserIds || !$activeGuidList) {
     logx("Нет активных пользователей — прекращаем.");
-    echo "OK v1.7.0-derived-sync; no active users\n";
+    echo "OK v1.7.2-direct-base-sync; no active users\n";
     return;
 }
 // ---------- HL -> SQL ----------
 $hl2sqlCount = 0;
+$sql2hlCount = 0;
+$employeesForVacationBalanceRecalc = [];
+// Base vacations are reconciled directly against the HL rows loaded below.
+// This does not depend on the global SQL cursor or on Staff_ID matching.
+ensureAdminUserAuthorized();
 $selectHL = [
     'ID','UF_STATUS','UF_STATE','UF_VACATION_STATE','UF_VACATION_DAYS','UF_DATE_END',
     'UF_DATE_BEGIN','UF_EMPLOYEE','UF_CHANGED_AT'
@@ -420,19 +425,60 @@ foreach (array_chunk($activeUserIds, HL_EMP_CHUNK_SIZE) as $ci => $uidChunk) {
     $idsForGate = array_map(fn($x) => "N'".$sqlHelper->forSql((string)$x['ID'])."'", $hlRows);
     $gateMap = [];
     foreach (array_chunk($idsForGate, 1000) as $idsChunk) {
-        $q = "SELECT Absence_ID, Absence_Renew_Date FROM ".GATE_DB_DBO.".".GATE_TABLE." WHERE Absence_ID IN (".implode(',', $idsChunk).")";
+        $q = "SELECT Absence_ID, Absence_Status, Absence_State, Absence_Renew_Date FROM ".GATE_DB_DBO.".".GATE_TABLE." WHERE Absence_ID IN (".implode(',', $idsChunk).")";
         $rsGate = $gateConn->query($q);
         while ($g = $rsGate->fetch()) {
-            $gateMap[(string)$g['Absence_ID']] = $g['Absence_Renew_Date']
-                ? date('Y-m-d H:i:s', strtotime($g['Absence_Renew_Date']))
-                : null;
+            $g['NORMALIZED_RENEW_DATE'] = normalizeSqlDateTime((string)($g['Absence_Renew_Date'] ?? ''));
+            $gateMap[(string)$g['Absence_ID']] = $g;
         }
     }
-    // кандидаты
+    // Resolve SQL-newer base vacations directly by Absence_ID. The cursor query
+    // remains useful for derived/new rows, but must not be the only way an
+    // existing base vacation can receive a status from 1C.
     $candidates = [];
     foreach ($hlRows as $row) {
-        $sqlRenew = $gateMap[(string)$row['ID']] ?? null;
-        if ($sqlRenew === null || $row['UF_CHANGED_AT'] > $sqlRenew) {
+        $gateRow = $gateMap[(string)$row['ID']] ?? null;
+        $sqlRenew = $gateRow['NORMALIZED_RENEW_DATE'] ?? null;
+        $sqlStatus = (int)($gateRow['Absence_Status'] ?? 0);
+        if ($gateRow && $sqlRenew && $sqlRenew > $row['UF_CHANGED_AT'] && in_array($sqlStatus, ALLOWED_STATES, true)) {
+            $id = (int)$row['ID'];
+            $upd = [
+                'UF_STATE' => $sqlStatus,
+                'UF_VACATION_STATE' => (int)$gateRow['Absence_State'],
+            ];
+            try {
+                logx(sprintf("SQL->HL DIRECT ОБНОВЛЕНИЕ id=%s статус=%s состояние=%s sql_renew=%s hl_changed=%s",
+                    (string)$id, (string)$upd['UF_STATE'], (string)$upd['UF_VACATION_STATE'], $sqlRenew, $row['UF_CHANGED_AT']
+                ));
+                $result = $dataClass::update($id, $upd);
+                if (!$result->isSuccess()) {
+                    logx("WARN SQL->HL DIRECT HL#{$id}: ".implode('; ', $result->getErrorMessages()));
+                    continue;
+                }
+                if (!triggerVacationBalanceRecalc($dataClass, $id, $row)) {
+                    queueVacationBalanceRecalc($employeesForVacationBalanceRecalc, (int)$row['UF_EMPLOYEE']);
+                }
+                $changedResult = $dataClass::getList([
+                    'select' => ['UF_CHANGED_AT'],
+                    'filter' => ['ID' => $id],
+                    'limit' => 1,
+                ]);
+                $changedRow = $changedResult->fetch();
+                if ($changedRow && $changedRow['UF_CHANGED_AT']) {
+                    $realTime = $changedRow['UF_CHANGED_AT'] instanceof DateTime
+                        ? $changedRow['UF_CHANGED_AT']->format('Y-m-d H:i:s')
+                        : date('Y-m-d H:i:s', strtotime((string)$changedRow['UF_CHANGED_AT']));
+                    syncSqlRenewDate($gateConn, $sqlHelper, (string)$id, $realTime);
+                } else {
+                    logx("WARN SQL->HL DIRECT HL#{$id}: UF_CHANGED_AT not read back after trigger");
+                }
+                $sql2hlCount++;
+            } catch (\Throwable $e) {
+                logx("ERROR SQL->HL DIRECT HL#{$id}: ".$e->getMessage());
+            }
+            continue;
+        }
+        if (!$gateRow || $sqlRenew === null || $row['UF_CHANGED_AT'] > $sqlRenew) {
             $candidates[] = $row;
         }
     }
@@ -482,8 +528,6 @@ WHEN NOT MATCHED THEN
 }
 logx("HL->SQL done: {$hl2sqlCount}");
 // ---------- SQL -> HL ----------
-$sql2hlCount = 0;
-$employeesForVacationBalanceRecalc = [];
 // The vacation module's event handlers expect the same authorized context as an
 // administrator save. Authorization must happen before, not after, SQL updates.
 ensureAdminUserAuthorized();
@@ -838,5 +882,5 @@ $rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $emplo
 // save cursor & finish
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
-logx("=== Test sync v1.7.1-base-id-sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
-echo "OK v1.7.1-base-id-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
+logx("=== Test sync v1.7.2-direct-base-sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
+echo "OK v1.7.2-direct-base-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
