@@ -1,0 +1,102 @@
+Audit_ID,Changed_At,Absence_ID,Old_Status,New_Status,Old_State,New_State,Old_Renew_Date,New_Renew_Date,Writer,Login_Name,Original_Login_Name,Host_Name,Application_Name,Session_ID
+1,2026-09-14 15:44:12.763,35275,4,8,1921,1921,2026-08-17 10:15:56.000,2026-09-14 18:09:47.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,184
+2,2026-09-14 15:44:12.763,35274,4,8,1922,1922,2026-09-14 09:15:10.000,2026-09-14 18:09:47.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,184
+3,2026-09-14 20:44:11.703,34720,4,7,1922,1922,2026-09-14 09:15:09.000,2026-09-14 23:27:48.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+4,2026-09-15 02:44:12.334,36159,4,5,1921,1923,2026-09-14 08:45:24.000,2026-09-15 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+5,2026-09-15 02:44:12.334,35133,4,5,1922,1923,2026-09-08 09:15:03.000,2026-09-15 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+6,2026-09-15 02:44:12.334,35113,4,5,1922,1923,2026-09-08 09:15:03.000,2026-09-15 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+7,2026-09-15 02:44:12.334,34588,4,5,1922,1923,2026-09-08 09:15:03.000,2026-09-15 05:10:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+8,2026-09-15 02:44:12.334,34011,4,5,1922,1923,2026-09-08 09:15:03.000,2026-09-15 05:10:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,205
+9,2026-09-15 06:06:03.953,35133,5,6,1923,1923,2026-09-15 05:10:02.000,2026-09-15 09:06:03.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,283
+10,2026-09-15 06:06:18.298,34588,5,6,1923,1923,2026-09-15 05:10:01.000,2026-09-15 09:06:17.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,283
+11,2026-09-15 06:06:25.174,34011,5,6,1923,1923,2026-09-15 05:10:01.000,2026-09-15 09:06:24.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,283
+12,2026-09-15 06:06:32.877,35113,5,6,1923,1923,2026-09-15 05:10:02.000,2026-09-15 09:06:32.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,283
+13,2026-09-15 06:07:42.116,36159,5,6,1923,1923,2026-09-15 05:10:02.000,2026-09-15 09:07:41.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,283
+14,2026-09-15 06:44:12.640,34720,7,8,1922,1922,2026-09-14 23:27:48.000,2026-09-15 08:49:57.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,155
+15,2026-09-15 06:44:12.640,26636,4,7,1922,1922,2026-09-14 09:15:04.000,2026-09-15 08:46:05.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,155
+16,2026-09-15 07:44:12.188,35983,7,8,1922,1922,2026-09-14 11:30:59.000,2026-09-15 10:32:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,255
+17,2026-09-15 07:44:12.188,35602,7,8,1921,1921,2026-09-14 11:30:59.000,2026-09-15 10:32:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,255
+18,2026-09-15 07:44:12.188,26261,4,7,1922,1922,2026-09-14 09:15:03.000,2026-09-15 10:23:08.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,255
+19,2026-09-15 07:44:12.188,33920,7,8,1922,1922,2026-09-15 09:10:35.000,2026-09-15 10:19:49.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,255
+20,2026-09-15 08:44:12.097,34039,4,7,1922,1922,2026-09-14 09:15:09.000,2026-09-15 11:22:58.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,60
+21,2026-09-15 08:44:12.097,35038,4,7,1921,1921,2026-08-17 10:16:14.000,2026-09-15 10:58:41.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,60
+22,2026-09-15 08:44:12.097,26261,7,8,1922,1922,2026-09-15 10:23:08.000,2026-09-15 10:45:59.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,60
+23,2026-09-15 08:48:23.304,34985,8,4,1924,1923,2026-09-12 01:00:01.000,2026-09-15 11:47:00.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,201
+24,2026-09-15 08:52:30.354,34985,4,8,1923,1925,2026-09-15 11:47:00.000,2026-09-15 11:50:34.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,60
+25,2026-09-15 09:01:15.545,32071,8,4,1921,1921,2026-09-01 10:10:02.000,2026-09-15 12:00:36.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,317
+26,2026-09-15 09:01:15.545,34984,6,8,1923,1923,2026-08-10 06:54:56.000,2026-09-15 12:00:35.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,317
+27,2026-09-15 09:01:15.545,34983,6,8,1923,1923,2026-08-10 06:54:56.000,2026-09-15 12:00:35.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,317
+28,2026-09-15 09:01:15.545,32070,8,4,1921,1921,2026-09-01 10:10:02.000,2026-09-15 12:00:35.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,317
+29,2026-09-15 09:01:15.545,28478,8,4,1922,1922,2026-09-01 10:10:02.000,2026-09-15 12:00:35.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,317
+30,2026-09-15 10:44:08.929,29736,4,7,1922,1922,2026-09-14 09:15:06.000,2026-09-15 13:40:28.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,313
+31,2026-09-15 11:44:15.374,26658,4,7,1922,1922,2026-09-15 09:15:02.000,2026-09-15 13:47:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,252
+32,2026-09-15 12:44:12.921,26658,7,8,1922,1922,2026-09-15 13:47:01.000,2026-09-15 15:29:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,193
+33,2026-09-15 13:44:13.715,29736,7,8,1922,1922,2026-09-15 13:40:28.000,2026-09-15 16:12:29.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,260
+34,2026-09-15 15:44:12.876,28410,4,7,1921,1921,2026-06-17 12:07:23.000,2026-09-15 18:32:58.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,233
+35,2026-09-15 15:44:12.876,28980,4,7,1922,1922,2026-09-15 09:15:03.000,2026-09-15 18:11:00.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,233
+36,2026-09-15 16:44:12.473,28410,7,8,1921,1921,2026-09-15 18:32:58.000,2026-09-15 19:20:13.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,273
+37,2026-09-15 16:44:12.473,35358,4,8,1921,1921,2026-08-31 10:39:45.000,2026-09-15 19:14:26.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,273
+38,2026-09-15 16:44:12.473,35281,4,8,1922,1922,2026-09-14 09:15:10.000,2026-09-15 19:11:15.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,273
+39,2026-09-16 06:44:12.281,26636,7,8,1922,1922,2026-09-15 13:44:31.000,2026-09-16 09:40:37.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,226
+40,2026-09-16 06:44:12.281,26861,4,8,1922,1922,2026-09-14 09:15:04.000,2026-09-16 09:38:52.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,226
+41,2026-09-16 07:44:13.095,35038,7,8,1921,1921,2026-09-15 10:58:41.000,2026-09-16 10:03:27.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,315
+42,2026-09-16 08:44:12.869,35389,4,7,1922,1922,2026-09-14 09:15:10.000,2026-09-16 11:20:10.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,134
+43,2026-09-16 09:44:11.726,35039,4,7,1921,1921,2026-08-17 10:16:14.000,2026-09-16 12:12:29.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,292
+44,2026-09-16 09:44:11.726,28033,4,8,1922,1922,2026-09-14 09:15:04.000,2026-09-16 11:45:38.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,292
+45,2026-09-16 10:44:12.393,35128,4,8,1922,1922,2026-09-14 09:15:10.000,2026-09-16 12:53:56.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,312
+46,2026-09-16 10:44:12.393,26757,7,8,1922,1922,2026-09-14 10:11:25.000,2026-09-16 12:53:48.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,312
+47,2026-09-16 12:44:12.700,30988,7,8,1921,1921,2026-09-11 09:03:52.000,2026-09-16 14:53:13.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,163
+48,2026-09-16 14:44:12.142,36001,7,8,1921,1921,2026-09-14 15:36:24.000,2026-09-16 17:28:48.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,216
+49,2026-09-16 16:44:12.450,29741,4,7,1921,1921,2026-06-22 11:00:24.000,2026-09-16 19:05:58.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,159
+50,2026-09-17 02:44:12.412,35091,4,5,1922,1923,2026-09-10 09:15:06.000,2026-09-17 05:10:03.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+51,2026-09-17 02:44:12.412,34402,4,5,1922,1923,2026-09-10 09:15:06.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+52,2026-09-17 02:44:12.412,33634,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+53,2026-09-17 02:44:12.412,33169,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+54,2026-09-17 02:44:12.412,32477,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+55,2026-09-17 02:44:12.412,30710,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+56,2026-09-17 02:44:12.412,30003,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+57,2026-09-17 02:44:12.412,28616,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+58,2026-09-17 02:44:12.412,28376,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+59,2026-09-17 02:44:12.412,28274,4,5,1922,1923,2026-09-10 09:15:05.000,2026-09-17 05:10:02.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+60,2026-09-17 02:44:12.412,26377,7,5,1922,1923,2026-09-10 10:31:30.000,2026-09-17 05:10:01.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,276
+61,2026-09-17 06:09:20.680,33634,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:09:20.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+62,2026-09-17 06:09:29.165,33169,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:09:28.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+63,2026-09-17 06:09:39.525,28616,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:09:39.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+64,2026-09-17 06:09:46.635,32477,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:09:46.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+65,2026-09-17 06:09:54.135,30003,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:09:53.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+66,2026-09-17 06:10:02.026,35091,5,6,1923,1923,2026-09-17 05:10:03.000,2026-09-17 09:10:01.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+67,2026-09-17 06:10:09.996,28274,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:10:09.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,229
+68,2026-09-17 06:22:10.722,28376,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:22:10.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,161
+69,2026-09-17 06:22:20.895,30710,5,6,1923,1923,2026-09-17 05:10:02.000,2026-09-17 09:22:20.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,161
+70,2026-09-17 06:44:12.041,35039,7,8,1921,1921,2026-09-16 12:12:29.000,2026-09-17 09:40:18.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,252
+71,2026-09-17 07:44:11.994,32071,4,8,1921,1921,2026-09-15 12:00:36.000,2026-09-17 10:23:51.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+72,2026-09-17 07:44:11.994,32070,4,8,1921,1921,2026-09-15 12:00:35.000,2026-09-17 10:23:12.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+73,2026-09-17 07:44:11.994,28478,4,8,1922,1922,2026-09-15 12:00:35.000,2026-09-17 10:22:31.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+74,2026-09-17 07:44:11.994,34983,8,6,1923,1923,2026-09-15 12:00:35.000,2026-09-17 10:19:52.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+75,2026-09-17 07:44:11.994,34984,8,6,1923,1923,2026-09-15 12:00:35.000,2026-09-17 10:18:58.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+76,2026-09-17 07:44:11.994,29741,7,8,1921,1921,2026-09-16 19:05:58.000,2026-09-17 09:59:29.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,135
+77,2026-09-17 08:44:13.416,26377,5,7,1923,1923,2026-09-17 05:10:01.000,2026-09-17 11:41:53.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,154
+78,2026-09-17 08:44:13.416,32329,4,7,1922,1922,2026-09-17 09:15:02.000,2026-09-17 11:07:19.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,154
+79,2026-09-17 09:44:13.014,33634,6,7,1923,1923,2026-09-17 09:09:20.000,2026-09-17 12:29:31.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,245
+80,2026-09-17 09:44:13.014,34402,5,4,1923,1923,2026-09-17 05:10:02.000,2026-09-17 12:08:24.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,245
+81,2026-09-17 10:44:12.388,35444,4,7,1922,1922,2026-09-14 09:15:10.000,2026-09-17 13:35:43.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,160
+82,2026-09-17 10:44:12.388,33634,7,8,1923,1923,2026-09-17 12:29:31.000,2026-09-17 13:10:42.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,160
+83,2026-09-17 11:44:12.469,34039,7,8,1922,1922,2026-09-15 11:22:58.000,2026-09-17 13:54:41.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,313
+84,2026-09-17 12:43:46.846,34402,4,8,1923,1923,2026-09-17 12:08:24.000,2026-09-17 15:42:05.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+85,2026-09-17 12:43:46.846,35123,7,8,1921,1921,2026-09-14 09:45:53.000,2026-09-17 15:35:12.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+86,2026-09-17 12:43:46.846,28974,7,8,1921,1921,2026-09-14 09:45:53.000,2026-09-17 15:35:11.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+87,2026-09-17 12:43:46.846,28973,7,8,1922,1922,2026-09-14 09:45:53.000,2026-09-17 15:35:11.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+88,2026-09-17 12:43:46.846,34661,4,7,1921,1921,2026-08-11 10:07:17.000,2026-09-17 15:18:33.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+89,2026-09-17 12:43:46.846,28980,7,8,1922,1922,2026-09-15 18:11:00.000,2026-09-17 15:14:59.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,124
+90,2026-09-17 12:45:06.508,36217,5,6,1921,1921,2026-09-17 15:43:08.000,2026-09-17 03:45:06.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,467
+91,2026-09-17 13:44:12.603,36217,6,5,1921,1921,2026-09-17 03:45:06.000,2026-09-17 15:43:08.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,256
+92,2026-09-17 14:44:12.898,35444,7,8,1922,1922,2026-09-17 13:35:43.000,2026-09-17 17:01:32.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,136
+93,2026-09-17 15:44:09.541,28841,7,8,1922,1922,2026-09-14 17:07:41.000,2026-09-17 18:09:39.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,250
+94,2026-09-17 15:44:09.541,29333,7,8,1921,1921,2026-09-08 10:02:35.000,2026-09-17 18:09:34.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,250
+95,2026-09-18 02:44:11.527,35976,4,5,1922,1923,2026-09-11 09:15:02.000,2026-09-18 05:10:03.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,150
+96,2026-09-18 05:30:51.400,35976,5,6,1923,1923,2026-09-18 05:10:03.000,2026-09-18 08:30:51.000,NULL,1c_import,1c_import,SRV-OFF-1C01,1C:Enterprise 8.3,216
+97,2026-09-18 07:44:12.878,26842,4,7,1921,1921,2026-07-06 14:51:22.000,2026-09-18 10:16:30.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,168
+98,2026-09-18 07:44:12.878,35389,7,8,1922,1922,2026-09-16 11:20:10.000,2026-09-18 10:06:30.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,168
+99,2026-09-18 08:44:13.053,30140,4,8,1922,1922,2026-09-14 09:15:07.000,2026-09-18 11:43:30.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,226
+100,2026-09-18 11:44:15.897,26842,7,8,1921,1921,2026-09-18 10:16:30.000,2026-09-18 14:41:10.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,220
+101,2026-09-18 11:44:15.897,33889,4,7,1921,1921,2026-08-17 10:16:18.000,2026-09-18 14:27:37.000,vacations_sync_log.php,GateDBUser,GateDBUser,srv-off-btrx02.nsc.ru,php,220

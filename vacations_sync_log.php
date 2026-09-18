@@ -532,7 +532,6 @@ logx("HL->SQL done: {$hl2sqlCount}");
 // administrator save. Authorization must happen before, not after, SQL updates.
 ensureAdminUserAuthorized();
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
-$guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
 do {
     if (microtime(true) - $startedAt > TIME_BUDGET_SEC) {
@@ -549,8 +548,7 @@ do {
 SELECT TOP ".GATE_BATCH_SIZE."
   Absence_ID,AbsenceBases_ID,DocumentVacation_ID,Staff_ID,Absence_Name,Absence_Status,Absence_Renew_Date,Absence_State,Absence_Date_Start,Absence_Day_Count
 FROM ".GATE_DB_DBO.".".GATE_TABLE."
-WHERE (Staff_ID IN ($guidInList) OR PATINDEX('%[^0-9]%', Absence_ID) > 0)
-  AND Absence_Status IN (".implode(',', ALLOWED_STATES).")
+WHERE Absence_Status IN (".implode(',', ALLOWED_STATES).")
   $cutoffSqlClause
   AND (
     Absence_Renew_Date > '".$sqlHelper->forSql($cursorRenew)."'
@@ -725,6 +723,11 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
         }
         $id = (int)$row['Absence_ID'];
         if (!isset($hlMap[$id])) continue;
+        // The numeric Absence_ID is the stable portal key. Do not reject a base
+        // vacation by SQL Staff_ID: 1C can leave an old/differently formatted
+        // employee GUID in the gateway row even though the matching HL row and
+        // its employee are valid. The preload by HL ID plus this active-user
+        // check is the authoritative ownership validation.
         $empId = (int)$hlMap[$id]['UF_EMPLOYEE'];
         if ($empId <= 0 || !in_array($empId, $activeUserIds, true)) continue;
         $sqlRenew = normalizeSqlDateTime((string)($row['Absence_Renew_Date'] ?? ''));

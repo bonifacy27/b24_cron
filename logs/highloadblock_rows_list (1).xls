@@ -1,0 +1,12 @@
+
+		<html>
+		<head>
+		<title>Highload-блок "Отпуска и отсутствия: Отсутствия": Список записей</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<style>
+			td {mso-number-format:\@;}
+			.number0 {mso-number-format:0;}
+			.number2 {mso-number-format:Fixed;}
+		</style>
+		</head>
+		<body><table border="1"><tr><td>ID</td><td>ID с префиксом</td><td>Сотрудник</td><td>Дата обновления (для интеграции с ЗУП)</td><td>Дата начала</td><td>Дата окончания</td><td>Количество дней отпуска</td><td>Тип отсутствия</td><td>Статус</td><td>ID заявки, на основании которой создана запись на графике</td><td>Состояние отпуска</td><td>Комментарии</td><td>Время обновления</td><td>ID основного отпуска</td><td>GUID документа</td></tr><tr><td>28616</td><td>&nbsp;</td><td>[3825](KiselevDV)Дмитрий Киселев</td><td>19.11.2025 12:20:47</td><td>01.10.2026</td><td>09.10.2026</td><td>9</td><td>Ежегодный отпуск</td><td>Закрыт от редактирования [5]</td><td>9217</td><td>Подтвержден</td><td>17.09.2026 Закрыт</td><td>17.09.2026 05:10:02</td><td>&nbsp;</td><td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td></tr></table></body></html>
