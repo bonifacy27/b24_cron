@@ -2,7 +2,7 @@
 /**
  * Vacations <-> GateDB_Test sync
  * Only ACTIVE users; 6-month window; only statuses [4,5,6,7,8]; diffed; batch MERGE; resume cursor
- * Version: v1.7.0-derived-sync (2026-04-17)
+ * Version: v1.7.1-base-id-sync (2026-09-18)
  *
  * Исправления:
  *  - HL → SQL: UF_VACATION_STATE → Absence_State
@@ -344,7 +344,7 @@ try {
         $cutoffBxDate = new Date($cutoffYmd, 'Y-m-d');
     }
 }
-logx("=== Test sync v1.7.0-derived-sync start ===");
+logx("=== Test sync v1.7.1-base-id-sync start ===");
 logx("Cutoff date (>=): ".($cutoffYmd ?: '<none>'));
 logx("Allowed UF_STATE: ".implode(',', ALLOWED_STATES));
 // Users & GUIDs
@@ -488,7 +488,6 @@ $employeesForVacationBalanceRecalc = [];
 // administrator save. Authorization must happen before, not after, SQL updates.
 ensureAdminUserAuthorized();
 list($cursorRenew, $cursorId) = loadSqlHlCursor();
-$guidInList = implode(',', array_map(fn($g) => "N'".$sqlHelper->forSql($g)."'", $activeGuidList));
 logx("SQL->HL resume cursor at: renew={$cursorRenew}, id='{$cursorId}'");
 do {
     if (microtime(true) - $startedAt > TIME_BUDGET_SEC) {
@@ -505,8 +504,7 @@ do {
 SELECT TOP ".GATE_BATCH_SIZE."
   Absence_ID,AbsenceBases_ID,DocumentVacation_ID,Staff_ID,Absence_Name,Absence_Status,Absence_Renew_Date,Absence_State,Absence_Date_Start,Absence_Day_Count
 FROM ".GATE_DB_DBO.".".GATE_TABLE."
-WHERE (Staff_ID IN ($guidInList) OR PATINDEX('%[^0-9]%', Absence_ID) > 0)
-  AND Absence_Status IN (".implode(',', ALLOWED_STATES).")
+WHERE Absence_Status IN (".implode(',', ALLOWED_STATES).")
   $cutoffSqlClause
   AND (
     Absence_Renew_Date > '".$sqlHelper->forSql($cursorRenew)."'
@@ -681,6 +679,11 @@ ORDER BY Absence_Renew_Date ASC, Absence_ID ASC";
         }
         $id = (int)$row['Absence_ID'];
         if (!isset($hlMap[$id])) continue;
+        // The numeric Absence_ID is the stable portal key. Do not reject a base
+        // vacation by SQL Staff_ID: 1C can leave an old/differently formatted
+        // employee GUID in the gateway row even though the matching HL row and
+        // its employee are valid. The preload by HL ID plus this active-user
+        // check is the authoritative ownership validation.
         $empId = (int)$hlMap[$id]['UF_EMPLOYEE'];
         if ($empId <= 0 || !in_array($empId, $activeUserIds, true)) continue;
         $sqlRenew = normalizeSqlDateTime((string)($row['Absence_Renew_Date'] ?? ''));
@@ -835,5 +838,5 @@ $rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $emplo
 // save cursor & finish
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
-logx("=== Test sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
-echo "OK v1.7.0-derived-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
+logx("=== Test sync v1.7.1-base-id-sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
+echo "OK v1.7.1-base-id-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
