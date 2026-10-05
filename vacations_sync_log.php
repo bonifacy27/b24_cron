@@ -15,6 +15,50 @@ use Bitrix\Main\Application;
 use Bitrix\Main\Config\Option;
 use Bitrix\Main\Type\Date;
 use Bitrix\Main\Type\DateTime;
+
+// This message is intentionally written before the Bitrix bootstrap. The cron
+// redirects stdout/stderr to vacations_sync_cron.log, while the regular sync
+// log is opened only later. Without this marker a bootstrap fatal error looks
+// exactly like a job that cron never started.
+$cronStartedAt = microtime(true);
+$cronRunId = date('Ymd-His').'-'.(string)getmypid();
+$cronRunCompleted = false;
+
+function cronDiagnostic(string $message): void {
+    $line = sprintf("[%s] [vacations_sync_log] %s\n", date('Y-m-d H:i:s'), $message);
+    if (defined('STDERR')) {
+        fwrite(STDERR, $line);
+        return;
+    }
+    error_log(rtrim($line));
+}
+
+cronDiagnostic("START run_id={$cronRunId} sapi=".PHP_SAPI." php=".PHP_VERSION);
+register_shutdown_function(static function () use (&$cronRunCompleted, $cronStartedAt, $cronRunId): void {
+    $lastError = error_get_last();
+    $fatalTypes = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR];
+    $elapsed = round(microtime(true) - $cronStartedAt, 3);
+
+    if ($lastError !== null && in_array($lastError['type'], $fatalTypes, true)) {
+        cronDiagnostic(sprintf(
+            'FINISH run_id=%s status=FATAL elapsed=%ss error=%s file=%s line=%d',
+            $cronRunId,
+            (string)$elapsed,
+            (string)$lastError['message'],
+            (string)$lastError['file'],
+            (int)$lastError['line']
+        ));
+        return;
+    }
+
+    cronDiagnostic(sprintf(
+        'FINISH run_id=%s status=%s elapsed=%ss',
+        $cronRunId,
+        $cronRunCompleted ? 'OK' : 'INCOMPLETE',
+        (string)$elapsed
+    ));
+});
+
 define('NOT_CHECK_PERMISSIONS', true);
 define('NO_KEEP_STATISTIC', true);
 define('BX_NO_ACCELERATOR_RESET', true);
@@ -367,6 +411,7 @@ while ($u = $rsAllUsers->Fetch()) {
 logx("Active users with GUID: users=".count($activeUserIds).", guids=".count($activeGuidList));
 if (!$activeUserIds || !$activeGuidList) {
     logx("Нет активных пользователей — прекращаем.");
+    $cronRunCompleted = true;
     echo "OK v1.7.2-direct-base-sync; no active users\n";
     return;
 }
@@ -883,4 +928,5 @@ $rewriteRecalcCount = rewriteCurrentYearVacationsForEmployees($dataClass, $emplo
 saveSqlHlCursor($cursorRenew, $cursorId);
 $elapsed = round(microtime(true) - $startedAt, 3);
 logx("=== Test sync v1.7.2-direct-base-sync done: HL->SQL={$hl2sqlCount}, SQL->HL={$sql2hlCount}, RecalcRewrite={$rewriteRecalcCount}, elapsed={$elapsed}s ===");
-echo "OK v1.7.2-direct-base-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s";
+$cronRunCompleted = true;
+echo "OK v1.7.2-direct-base-sync; cutoff=".($cutoffYmd?:'none')."; HL->SQL={$hl2sqlCount}; SQL->HL={$sql2hlCount}; RecalcRewrite={$rewriteRecalcCount}; elapsed={$elapsed}s\n";
