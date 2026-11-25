@@ -50,7 +50,8 @@ try {
         }
     }
 
-    $docRoot = realpath(getenv('BITRIX_DOCUMENT_ROOT') ?: '/home/bitrix/www');
+    // /home/bitrix/www/local/cron находится на два уровня ниже корня сайта.
+    $docRoot = realpath(getenv('BITRIX_DOCUMENT_ROOT') ?: dirname(__DIR__, 2));
     $prolog = $docRoot . '/bitrix/modules/main/include/prolog_before.php';
     if ($docRoot === false || !is_file($prolog) || !chdir($docRoot)) {
         throw new RuntimeException('Проверьте BITRIX_DOCUMENT_ROOT. Пролог Bitrix недоступен.');
@@ -121,7 +122,8 @@ try {
             $id = (int)$row['ID'];
             $employeeId = (int)$row['UF_USER'];
             $day = $row['UF_DATE']->format('Y-m-d');
-            $presence = PRESENCE_REMOTE;
+            $currentPresence = (int)$row['UF_PRESENCE_TYPE'];
+            $presence = null;
             foreach ($vacationsByUser[$employeeId] ?? [] as [$begin, $end, $state]) {
                 if ($day < $begin || $day > $end) {
                     continue;
@@ -133,8 +135,15 @@ try {
                 $presence = PRESENCE_VACATION_PLAN;
             }
 
+            if ($presence === null) {
+                if (!in_array($currentPresence, [PRESENCE_VACATION_PLAN, PRESENCE_VACATION_ACTUAL], true)) {
+                    continue;
+                }
+                $presence = PRESENCE_REMOTE;
+            }
+
             $updates = [];
-            if ((int)$row['UF_PRESENCE_TYPE'] !== $presence) {
+            if ($currentPresence !== $presence) {
                 $updates['UF_PRESENCE_TYPE'] = $presence;
             }
             if ($presence === PRESENCE_REMOTE && (int)$row['UF_STATUS'] !== STATUS_CORRECTION) {
